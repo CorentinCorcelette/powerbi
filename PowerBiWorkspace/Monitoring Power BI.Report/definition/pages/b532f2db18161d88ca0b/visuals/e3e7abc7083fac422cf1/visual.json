@@ -6,7 +6,8 @@
     "y": 0,
     "z": 1000,
     "height": 63.624439074905069,
-    "width": 1000.1229988800741
+    "width": 1000.1229988800741,
+    "tabOrder": 0
   },
   "visualGroup": {
     "displayName": "Bandeau",
