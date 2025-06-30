@@ -1,0 +1,49 @@
+table Param_activite
+	lineageTag: 2a81b704-4f64-4f4b-97cf-e03a9528be16
+
+	column Param_activite
+		lineageTag: ac799c02-10cf-4474-ba54-81e4ab51312b
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Param_activite Commande'
+
+		relatedColumnDetails
+			groupByColumn: 'Param_activite Champs'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Param_activite Champs'
+		isHidden
+		lineageTag: 81e858a2-7a96-459e-b8a6-b861d4246b63
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Param_activite Commande'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Param_activite Commande'
+		isHidden
+		formatString: 0
+		lineageTag: b010e377-09de-444b-8bcf-b51202d9449b
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Param_activite = calculated
+		mode: import
+		source =
+				{
+				    ("Utilisateur", NAMEOF('Dim_user'[nom_prenom]), 1),
+				    ("Date", NAMEOF('Dim_calendrier'[dt_date]), 0),
+				    ("Type activité", NAMEOF('Fact_logs_activity'[Activity]), 2)
+				}
+
+	annotation PBI_Id = c0240a6dbc1a4edea13d927088e5bf62
+

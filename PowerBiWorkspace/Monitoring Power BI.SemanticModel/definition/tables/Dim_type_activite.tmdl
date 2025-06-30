@@ -1,0 +1,45 @@
+table Dim_type_activite
+	lineageTag: a8a1544d-94ff-4082-a7b8-c38ed60dbf41
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: adb4c922-a367-49b3-a56c-c6296f768100
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_activite
+		dataType: string
+		lineageTag: ab8ee7c5-c778-40b2-98ab-bc25ac5a8a69
+		summarizeBy: none
+		sourceColumn: nom_activite
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_required_licence_pro
+		dataType: int64
+		formatString: 0
+		lineageTag: dc3c4c98-e9c1-4bd1-bcd0-6c2a6178000f
+		summarizeBy: none
+		sourceColumn: fg_required_licence_pro
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_type_activite = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // mi_type_activite
+				    mi_type_activite_Table = Source{[Name="mi_type_activite",Kind="Table"]}[Data]
+				in
+				    mi_type_activite_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

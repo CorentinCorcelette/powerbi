@@ -1,0 +1,135 @@
+table Dim_report
+	lineageTag: e0e7674a-ca58-4124-ab6e-14df320b7c81
+
+	column id
+		dataType: string
+		lineageTag: 29f31951-8cb2-4123-a5db-8411e8289f37
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column reportType
+		dataType: string
+		lineageTag: 2953421d-153e-4573-98ca-d0c9a2a423fa
+		summarizeBy: none
+		sourceColumn: reportType
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 7a7364f2-17a3-4709-9292-5c04e024ff0e
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column webUrl
+		dataType: string
+		lineageTag: 9c9fa102-dac5-47e0-8bb3-5f6e545dbe57
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: webUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column embedUrl
+		dataType: string
+		lineageTag: 219a16d1-dd87-44b7-b5e5-216fcc63f318
+		summarizeBy: none
+		sourceColumn: embedUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column isFromPbix
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 43b67eb3-c7d6-4db5-827a-1b53b2b32620
+		summarizeBy: none
+		sourceColumn: isFromPbix
+
+		annotation SummarizationSetBy = Automatic
+
+	column isOwnedByMe
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 34b394e2-14f2-48aa-9631-76a05b304498
+		summarizeBy: none
+		sourceColumn: isOwnedByMe
+
+		annotation SummarizationSetBy = Automatic
+
+	column datasetId
+		dataType: string
+		lineageTag: f7423936-c12b-44ad-9c13-ab523a9320e4
+		summarizeBy: none
+		sourceColumn: datasetId
+
+		annotation SummarizationSetBy = Automatic
+
+	column datasetWorkspaceId
+		dataType: string
+		lineageTag: d4aae5e8-e95f-4be6-b057-3da0d8cb3f81
+		summarizeBy: none
+		sourceColumn: datasetWorkspaceId
+
+		annotation SummarizationSetBy = Automatic
+
+	column reportFlags
+		dataType: int64
+		formatString: 0
+		lineageTag: a4d4569a-8f72-42a4-9009-ac6e9cb3e923
+		summarizeBy: sum
+		sourceColumn: reportFlags
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 70376d68-41d1-4185-99a8-f9fd86bffdff
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column users___
+		dataType: string
+		lineageTag: d4501df5-5b6f-49e8-9230-c6e7cd817175
+		summarizeBy: none
+		sourceColumn: users___
+
+		annotation SummarizationSetBy = Automatic
+
+	column subscriptions___
+		dataType: string
+		lineageTag: a658de02-fef3-45c0-b19c-171edac987da
+		summarizeBy: none
+		sourceColumn: subscriptions___
+
+		annotation SummarizationSetBy = Automatic
+
+	column workspace_id
+		dataType: string
+		lineageTag: c9c8fcb8-2800-4df5-b76a-b8d723a2646c
+		summarizeBy: none
+		sourceColumn: workspace_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_report = m
+		mode: import
+		queryGroup: Dimensions\Report
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // api_pbi_reports
+				    pbi_workspace_Table = Source{[Name="api_pbi_reports",Kind="Table"]}[Data]
+				in
+				    pbi_workspace_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

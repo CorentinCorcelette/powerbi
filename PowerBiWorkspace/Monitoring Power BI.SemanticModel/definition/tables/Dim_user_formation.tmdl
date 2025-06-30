@@ -1,0 +1,55 @@
+table Dim_user_formation
+	lineageTag: 61e8f8c3-5505-4797-b5b6-1eb81aaebda7
+
+	column email
+		dataType: string
+		lineageTag: 316a502a-b4ec-4ad0-9e3e-b42adaf12fb7
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_formation_n1
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: dc2c8e6a-2c2a-49bc-ac2d-d00f5701a005
+		summarizeBy: none
+		sourceColumn: fg_formation_n1
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_formation_n2
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3e8b01d2-406b-44d1-8dd7-d8e8674fb551
+		summarizeBy: none
+		sourceColumn: fg_formation_n2
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_formation_n3
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5f789ac8-220a-4328-b492-e5ab76b97c03
+		summarizeBy: none
+		sourceColumn: fg_formation_n3
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_user_formation = m
+		mode: import
+		queryGroup: Dimensions\User
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // mi_formation_pbi
+				    mi_formation_pbi_Table = Source{[Name="mi_formation_pbi",Kind="Table"]}[Data],
+				    #"Type modifié" = Table.TransformColumnTypes(mi_formation_pbi_Table,{{"fg_formation_n1", type logical}, {"fg_formation_n2", type logical}, {"fg_formation_n3", type logical}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

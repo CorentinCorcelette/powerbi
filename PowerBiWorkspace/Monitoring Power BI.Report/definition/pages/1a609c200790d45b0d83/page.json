@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "1a609c200790d45b0d83",
+  "displayName": "4 - Modèle Sémantique",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Tutoriel - Fond Power BI (2).svg'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "Tutoriel_-_Fond_Power_BI_(2)28136441128209766.svg"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Fit'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "382L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "af8685975db1a20d8d15",
+      "target": "6a59acf532d846368000",
+      "type": "DataFilter"
+    },
+    {
+      "source": "67d0f73a169737048250",
+      "target": "695c87f1a0020b5536dc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "95988308e5901d0b636e",
+      "target": "695c87f1a0020b5536dc",
+      "type": "NoFilter"
+    }
+  ]
+}

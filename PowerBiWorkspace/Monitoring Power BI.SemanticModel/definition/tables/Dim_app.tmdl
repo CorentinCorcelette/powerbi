@@ -1,0 +1,82 @@
+table Dim_app
+	lineageTag: 1dd6c73d-09e8-47fd-9cb2-27f64deaa979
+
+	column id
+		dataType: string
+		lineageTag: 97957868-4c20-4e4e-a917-90b355a166df
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: b6cca0b1-5dd6-4a5d-b282-39ba848b199d
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column lastUpdate
+		dataType: string
+		lineageTag: acdfa4c4-e1b1-496a-868b-ecd0cfcde875
+		summarizeBy: none
+		sourceColumn: lastUpdate
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 31db3b8c-91b6-4fbb-b061-93b1fcc52eb9
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column publishedBy
+		dataType: string
+		lineageTag: 959c2a76-0573-4a3f-95c0-feac4d78725a
+		summarizeBy: none
+		sourceColumn: publishedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column workspaceId
+		dataType: string
+		lineageTag: 82817fba-115d-44e1-9921-98b5ed32be10
+		summarizeBy: none
+		sourceColumn: workspaceId
+
+		annotation SummarizationSetBy = Automatic
+
+	column users___
+		dataType: string
+		lineageTag: b616672c-e82c-49b4-a8f8-24eb7607a54f
+		summarizeBy: none
+		sourceColumn: users___
+
+		annotation SummarizationSetBy = Automatic
+
+	column webURL = "https://app.powerbi.com/groups/me/apps/" & Dim_app[id]
+		lineageTag: 22924516-fddb-4375-a6b2-c284bf468e0f
+		dataCategory: WebUrl
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_app = m
+		mode: import
+		queryGroup: Dimensions\Application
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // api_pbi_app
+				    pbi_workspace_Table = Source{[Name="api_pbi_app",Kind="Table"]}[Data]
+				in
+				    pbi_workspace_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

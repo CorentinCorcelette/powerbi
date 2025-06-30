@@ -1,0 +1,165 @@
+table Dim_dataset_report
+	lineageTag: ca1c0951-d018-4ebb-adc4-075a514ffd65
+
+	column id
+		dataType: string
+		lineageTag: d6f4633e-2116-4c84-91ad-397174212729
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: c7b3d6dd-b2bd-4149-92b8-2fe5b9e53805
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column webUrl
+		dataType: string
+		lineageTag: 8220c763-b475-4f06-8f0e-dc7adb409e77
+		summarizeBy: none
+		sourceColumn: webUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column addRowsAPIEnabled
+		dataType: string
+		lineageTag: 13935cfa-1d2d-4690-926c-0a370b69a204
+		summarizeBy: none
+		sourceColumn: addRowsAPIEnabled
+
+		annotation SummarizationSetBy = Automatic
+
+	column configuredBy
+		dataType: string
+		lineageTag: fe230e28-9470-4d6e-855d-11dfd6118a06
+		summarizeBy: none
+		sourceColumn: configuredBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column isRefreshable
+		dataType: string
+		lineageTag: 609eabbe-7880-4ef0-9ee6-b3600dd072ff
+		summarizeBy: none
+		sourceColumn: isRefreshable
+
+		annotation SummarizationSetBy = Automatic
+
+	column isEffectiveIdentityRequired
+		dataType: string
+		lineageTag: 77cebaaa-efa6-4d39-94ba-6f43d14c31e1
+		summarizeBy: none
+		sourceColumn: isEffectiveIdentityRequired
+
+		annotation SummarizationSetBy = Automatic
+
+	column isEffectiveIdentityRolesRequired
+		dataType: string
+		lineageTag: eb7e2778-ebab-43bf-b0c5-b73c40e6df0c
+		summarizeBy: none
+		sourceColumn: isEffectiveIdentityRolesRequired
+
+		annotation SummarizationSetBy = Automatic
+
+	column isOnPremGatewayRequired
+		dataType: string
+		lineageTag: 7f11b68b-e127-4780-97f6-fddedef606c0
+		summarizeBy: none
+		sourceColumn: isOnPremGatewayRequired
+
+		annotation SummarizationSetBy = Automatic
+
+	column targetStorageMode
+		dataType: string
+		lineageTag: dfbe546a-f7c5-40bb-9ede-3f315a9c81aa
+		summarizeBy: none
+		sourceColumn: targetStorageMode
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdDate
+		dataType: string
+		lineageTag: 294cc025-5065-48f8-9a88-f4b4cc875eac
+		summarizeBy: none
+		sourceColumn: createdDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column createReportEmbedURL
+		dataType: string
+		lineageTag: 6daec611-1106-4bac-b390-7bc6ab9b56e8
+		summarizeBy: none
+		sourceColumn: createReportEmbedURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column qnaEmbedURL
+		dataType: string
+		lineageTag: 07eab702-fcbd-45a1-8e74-862b0606414a
+		summarizeBy: none
+		sourceColumn: qnaEmbedURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column upstreamDatasets___
+		dataType: string
+		lineageTag: 278a5ce2-b2d1-4383-be9c-228e4844860b
+		summarizeBy: none
+		sourceColumn: upstreamDatasets___
+
+		annotation SummarizationSetBy = Automatic
+
+	column users___
+		dataType: string
+		lineageTag: 7853f6ff-2535-4b6d-a5ea-f5903783ffd2
+		summarizeBy: none
+		sourceColumn: users___
+
+		annotation SummarizationSetBy = Automatic
+
+	column queryScaleOutSettings
+		dataType: string
+		lineageTag: 73d1eb52-25b8-4e69-b531-d92c451b5810
+		summarizeBy: none
+		sourceColumn: queryScaleOutSettings
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 08245bfe-4640-485d-8df3-74ab5ef69513
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column workspace_id
+		dataType: string
+		lineageTag: 2b00a706-dc62-4a34-b1ae-c6713cb5fb58
+		summarizeBy: none
+		sourceColumn: workspace_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_dataset_report = m
+		mode: import
+		queryGroup: Dimensions\Dataset
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // api_pbi_datasets
+				    pbi_workspace_Table = Source{[Name="api_pbi_datasets",Kind="Table"]}[Data],
+				    // Ajout du suffixe "/details" afin d'arriver sur le modèle et pas sur la création d'un rapport connecté au modèle
+				    #"Suffixe /details ajouté" = Table.TransformColumns(pbi_workspace_Table, {{"webUrl", each _ & "/details", type text}})
+				in
+				    #"Suffixe /details ajouté"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

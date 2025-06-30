@@ -1,0 +1,151 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/2.1.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY24SU02",
+      "reportVersionAtImport": "5.51",
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Th_me_HomeServe9897699981639596.json",
+      "reportVersionAtImport": "5.55",
+      "type": "RegisteredResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "HierarchicalTreeF39DAE8D57A743EF89F5C3809DEE2B67",
+    "hierarchyChartDD06406DD55C47CCBB412EFE9A671D14",
+    "swOrgChart17FBD5343987489AA69DE2FEC21F2AD9"
+  ],
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Th_me_HomeServe9897699981639596.json",
+          "path": "Th_me_HomeServe9897699981639596.json",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI5358952155970584.svg",
+          "path": "Tutoriel_-_Fond_Power_BI5358952155970584.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI_(1)24000952496647754.svg",
+          "path": "Tutoriel_-_Fond_Power_BI_(1)24000952496647754.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI_(1)2413986771997939.svg",
+          "path": "Tutoriel_-_Fond_Power_BI_(1)2413986771997939.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI_(1)41979216832909505.svg",
+          "path": "Tutoriel_-_Fond_Power_BI_(1)41979216832909505.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI_(1)874018902214315.svg",
+          "path": "Tutoriel_-_Fond_Power_BI_(1)874018902214315.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI_(1)9277855025273868.svg",
+          "path": "Tutoriel_-_Fond_Power_BI_(1)9277855025273868.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI_(2)2026505690074123.svg",
+          "path": "Tutoriel_-_Fond_Power_BI_(2)2026505690074123.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI_(2)28136441128209766.svg",
+          "path": "Tutoriel_-_Fond_Power_BI_(2)28136441128209766.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI_(2)5164992933106473.svg",
+          "path": "Tutoriel_-_Fond_Power_BI_(2)5164992933106473.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI_(2)9864079082822153.svg",
+          "path": "Tutoriel_-_Fond_Power_BI_(2)9864079082822153.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI_(3)8786946962069083.svg",
+          "path": "Tutoriel_-_Fond_Power_BI_(3)8786946962069083.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tutoriel_-_Fond_Power_BI_(4)8642454461042395.svg",
+          "path": "Tutoriel_-_Fond_Power_BI_(4)8642454461042395.svg",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY24SU02",
+          "path": "BaseThemes/CY24SU02.json",
+          "type": "BaseTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "isPersistentUserStateDisabled": true,
+    "useStylableVisualContainerHeader": true,
+    "defaultFilterActionIsDataFilter": true,
+    "defaultDrillFilterOtherVisuals": true,
+    "useCrossReportDrillthrough": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useScaledTooltips": true,
+    "pagesPosition": "Bottom",
+    "useDefaultAggregateDisplayName": true
+  },
+  "slowDataSourceSettings": {
+    "isCrossHighlightingDisabled": false,
+    "isSlicerSelectionsButtonEnabled": false,
+    "isFilterSelectionsButtonEnabled": false,
+    "isFieldWellButtonEnabled": false,
+    "isApplyAllButtonEnabled": true
+  }
+}

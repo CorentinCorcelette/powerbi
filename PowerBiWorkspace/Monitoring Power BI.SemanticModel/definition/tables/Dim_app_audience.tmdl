@@ -1,0 +1,44 @@
+table Dim_app_audience
+	lineageTag: 2071779d-5d9f-48d9-93f3-e722dd5c06e6
+
+	column app_id
+		dataType: string
+		lineageTag: 244d21b4-e3a8-4ab5-ba20-49f087fca140
+		summarizeBy: none
+		sourceColumn: app_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_audience
+		dataType: string
+		lineageTag: 873176c4-ceec-40ee-bcc4-a2a5ddf68d79
+		summarizeBy: none
+		sourceColumn: nom_audience
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b0e2f6a-164d-442e-a30b-d3cf7a5bb402
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_app_audience = m
+		mode: import
+		queryGroup: Dimensions\Application
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // mi_app_audience
+				    mi_formation_pbi_Table = Source{[Name="mi_app_audience",Kind="Table"]}[Data]
+				in
+				    mi_formation_pbi_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

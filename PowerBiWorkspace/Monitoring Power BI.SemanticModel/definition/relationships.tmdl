@@ -1,0 +1,128 @@
+relationship 110d7dbb-0154-7e40-792a-382e900c3392
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromColumn: Dim_calendrier_periode.dt_date
+	toColumn: Dim_calendrier.dt_date
+
+relationship f3084c23-da17-865c-9192-6ce3c8e9f211
+	fromColumn: Fact_logs_activity.CreationTime
+	toColumn: Dim_calendrier.dt_date
+
+relationship 3796b00b-c77e-0fa8-9d48-a31fe82bd1b5
+	fromColumn: Fact_logs_activity.ReportId
+	toColumn: Dim_report.id
+
+relationship df05ac4b-5b5a-9deb-cc0e-074272590995
+	fromColumn: Fact_logs_activity.DatasetId
+	toColumn: Dim_dataset.id
+
+relationship be26e7d9-d860-6faa-a518-2a866858bbd7
+	fromColumn: Fact_logs_activity.AppId
+	toColumn: Dim_app.id
+
+relationship 7464d51d-58d2-cbeb-65fa-235cd9e3616e
+	fromColumn: Fact_logs_activity.DashboardId
+	toColumn: Dim_dashboard.id
+
+relationship 821aea29-7ce2-ba44-3119-a4c01dda3eee
+	fromColumn: Dim_report_user.report_id
+	toColumn: Dim_report.id
+
+relationship 6895313c-64b8-3482-f71c-31e3c33e8df0
+	fromColumn: Dim_dataset_user.dataset_id
+	toColumn: Dim_dataset.id
+
+relationship 7caf3f9b-626c-fa39-cd0b-451904d53aa5
+	fromColumn: Dim_dashboard_user.dashboard_id
+	toColumn: Dim_dashboard.id
+
+relationship 160c5f86-d28e-f6e5-e5dd-01e7acdbff9a
+	fromColumn: Fact_abonnement_report.report_id
+	toColumn: Dim_report.id
+
+relationship bafd65b5-f206-0d8d-5618-ec122d81b04b
+	fromColumn: Fact_abonnement_dashboard.dashboard_id
+	toColumn: Dim_dashboard.id
+
+relationship c7e36fcd-7f64-c9c0-6005-8527c54a103f
+	fromColumn: Fact_refresh_history.dataset_id
+	toColumn: Dim_dataset.id
+
+relationship f758b90f-9d7b-25ed-07e1-b1536e5d04d7
+	fromColumn: Dim_app_user.app_id
+	toColumn: Dim_app.id
+
+relationship c48766a0-47f7-0b22-83ae-1f2172cb9e8d
+	fromColumn: Dim_user_formation.email
+	toColumn: Dim_user.email
+
+relationship ea5fbc89-85e8-8795-69d4-b9fe5ae3bb59
+	fromColumn: Dim_app_audience.app_id
+	toColumn: Dim_app.id
+
+relationship 7e6d4238-5703-515e-8c14-74bcabc3c18e
+	fromColumn: Dim_app_audience_user.nom_audience
+	toColumn: Dim_app_audience.nom_audience
+
+relationship b8d93791-c464-4c91-a892-5eea0a8503d2
+	fromColumn: Fact_logs_activity.UserId
+	toColumn: Dim_user.email
+
+relationship 0e3583b3-9896-d6d9-eae3-2a9cbc218e1d
+	fromColumn: Dim_app_user_audience.email_technique
+	toColumn: Dim_user.email
+
+relationship e33b66f0-d3cb-28ef-ac53-e21fe15172ba
+	fromColumn: Fact_logs_activity.Activity
+	toColumn: Dim_type_activite.nom_activite
+
+relationship 6751d283-7a68-3299-24cd-d9adbbad3d0b
+	fromColumn: Dim_dataset_source.dataset_id
+	toColumn: Dim_dataset.id
+
+relationship dc47e460-f5c0-b1b3-ecb4-9d2b1af8aca9
+	fromColumn: Dim_dataset_parameter.dataset_id
+	toColumn: Dim_dataset.id
+
+relationship 1d92b46b-a7e8-d2cf-3203-66c7d79b750e
+	fromColumn: Dim_user.UserId@
+	toColumn: Dim_user_sirh.email@
+
+relationship 815bb457-52a8-7b2e-9b51-f7e1c35f3f7e
+	fromColumn: Dim_report.workspace_id
+	toColumn: Dim_workspace_report.id
+
+relationship e6163ceb-5699-bd7b-0dbd-32fcce86ae10
+	fromColumn: Dim_dataset.workspace_id
+	toColumn: Dim_workspace_dataset.id
+
+relationship cbad8e5d-822a-3640-e97b-ddba4698ad70
+	fromColumn: Dim_dashboard.workspace_id
+	toColumn: Dim_workspace_dashboard.id
+
+relationship 8073d358-9a87-9b4f-baeb-c3e71071e3e2
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Dim_dashboard.displayName
+	toColumn: Dim_catalog_dashboard.name
+
+relationship 920a49f5-84e5-1e92-28fa-6c071eab2631
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Dim_dataset.name
+	toColumn: Dim_catalog_dataset.name
+
+relationship b663958e-0fc7-f6ed-e9cd-bb78b34f08b9
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Dim_report.name
+	toColumn: Dim_catalog_report.name
+
+relationship a43a8f85-6347-2d33-9011-659101655a7d
+	fromColumn: Dim_dashboard_vignette.id
+	toColumn: Dim_dashboard.id
+
+relationship 20e9959d-eb80-2c93-2abc-7b53d4f8ae2c
+	fromColumn: Dim_report.datasetId
+	toColumn: Dim_dataset_report.id
+

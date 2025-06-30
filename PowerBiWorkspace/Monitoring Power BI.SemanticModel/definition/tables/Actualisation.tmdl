@@ -1,0 +1,51 @@
+/// Requête qui récupère la dernière date d'actualisation des données afin de l'afficher dans le rapport.
+table Actualisation
+	isHidden
+	lineageTag: 93d1ed6d-a12a-47e4-a86f-1c3175a31e21
+
+	/// Date de dernière modification des tables de faits du modèle.
+	column dt_last_modified
+		dataType: dateTime
+		isHidden
+		formatString: Short Date
+		isAvailableInMdx: false
+		lineageTag: 17f1405a-8697-4cb7-b569-92f8ad2c2e55
+		summarizeBy: none
+		sourceColumn: dt_last_modified
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Actualisation = m
+		mode: import
+		source = ```
+				let
+				    // INFORMATION_SCHEMA.TABLE_STORAGE
+				     Source = Value.NativeQuery(GoogleBigQuery.Database([BillingProject=Projet_adm]){[Name=Projet_adm]}[Data], "select table_catalog, table_schema, table_name, " & 
+				            "storage_last_modified_time as dth_last_modified_time, " & 
+				            "DATE(storage_last_modified_time, 'Europe/Paris') as dt_last_modified, " & 
+				            "creation_time as dth_creation_time, total_rows as nb_lignes " & 
+				            "from `" & Projet_adm & ".region-EU.INFORMATION_SCHEMA.TABLE_STORAGE`", null, [EnableFolding=true]),
+				    // Choisir les tables du modèle en excluant les tables non pertinentes (ex : vues) et qui ne sont pas régulièrement actualisées (ex : manuel input)
+				    #"Tables du modèle" = Table.SelectRows(Source, each ([table_name] = "api_pbi_abonnement_dashboard" or [table_name] = "api_pbi_abonnement_rapport" or [table_name] = "api_pbi_app" or [table_name] = "api_pbi_app_dashboard_vignette" or [table_name] = "api_pbi_app_reports" or [table_name] = "api_pbi_app_users" or [table_name] = "api_pbi_dashboards" or [table_name] = "api_pbi_datasets" or [table_name] = "api_pbi_dataset_parameter" or [table_name] = "api_pbi_dataset_refreshschedule" or [table_name] = "api_pbi_dataset_source_modele" or [table_name] = "api_pbi_group" or [table_name] = "api_pbi_refreshes" or [table_name] = "api_pbi_reports" or [table_name] = "api_pbi_users" or [table_name] = "api_pbi_user_dashboard" or [table_name] = "api_pbi_user_datasets" or [table_name] = "api_pbi_user_groups" or [table_name] = "api_pbi_user_report" or [table_name] = "logs_powerbi" or [table_name] = "pbi_abonnement_dashboard" or [table_name] = "pbi_abonnement_rapport" or [table_name] = "pbi_refreshes" or [table_name] = "pbi_users")),
+				    // Dédoublonner [dt_last_modified]
+				    #"Supprimer les doublons dates" = Table.Distinct(#"Tables du modèle", {"dt_last_modified"}),
+				    // Minimum [dt_last_modified]
+				    #"Min date de modification" = Table.SelectRows(#"Supprimer les doublons dates", let earliest = List.Min(#"Supprimer les doublons dates"[dt_last_modified]) in each [dt_last_modified] = earliest),
+				    // Soustraire deux jours de la date minimale car les logs Power BI sont disponibles à J-2
+				    #"Date moins deux jours" = Table.TransformColumns(#"Min date de modification", {{"dt_last_modified", each Date.AddDays(_, -2), type date}}),
+				    // Colonnes à conserver
+				    #"Autres colonnes supprimées" = Table.SelectColumns(#"Date moins deux jours",{"dt_last_modified"})
+				in
+				    #"Autres colonnes supprimées"
+				```
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

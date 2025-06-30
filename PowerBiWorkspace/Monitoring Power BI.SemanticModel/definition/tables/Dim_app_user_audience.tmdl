@@ -1,0 +1,60 @@
+table Dim_app_user_audience
+	lineageTag: ef0bfb1d-366b-4725-8ec3-b28bbfa7e8d6
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ab1e246-65e5-48d3-aa2a-27682b81cdf7
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_app
+		dataType: string
+		lineageTag: c2065d9c-9ce3-4dee-9f6b-81c5126312f7
+		summarizeBy: none
+		sourceColumn: nom_app
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_audience
+		dataType: string
+		lineageTag: 40d734f3-b502-4adc-acef-8d34012a10f7
+		summarizeBy: none
+		sourceColumn: nom_audience
+
+		annotation SummarizationSetBy = Automatic
+
+	column email_technique
+		dataType: string
+		lineageTag: 1d632edc-af5e-4684-8ecf-16384ba339cb
+		summarizeBy: none
+		sourceColumn: email_technique
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 8e517bfe-6c6c-4c8f-8ebe-9bca477d63cc
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_app_user_audience = m
+		mode: import
+		queryGroup: Dimensions\Application
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // mi_audience_user
+				    mi_formation_pbi_Table = Source{[Name="mi_audience_user",Kind="Table"]}[Data]
+				in
+				    mi_formation_pbi_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,116 @@
+/// Ce paramètre définit l'environnement du projet haiku-dm.
+expression Projet_dm = "haiku-dm-prod" meta [IsParameterQuery=true, List={"haiku-dm-prod", "haiku-dm-preprod", "haiku-dev-1"}, DefaultValue="haiku-dm-prod", Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 70240752-d7f6-4be8-a441-e4cdf6cd46a6
+	queryGroup: Paramètres
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+/// Ce paramètre définit le début de l'intervalle temporel à partir duquel les données doivent être importées ou filtrées
+expression RangeStart = #date(2025, 2, 24) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]
+	lineageTag: a2415c3e-324f-466a-83af-f9856e303cf2
+	queryGroup: Paramètres
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Date
+
+/// Requête permettant de récupérer l'ensemble des tables du schéma Modele_Semantique utilisées dans le modèle de données.
+expression Source_Modele_Semantique =
+		let
+		    // Projet
+		    Source = GoogleBigQuery.Database([BillingProject=Projet_dm]),
+		    Projet = Source{[Name=Projet_dm]}[Data],
+		    // Schéma
+		    Schema = Projet{[Name="Modele_Semantique",Kind="Schema"]}[Data],
+		    // Tables
+		    #"Lignes filtrées" = Table.SelectRows(Schema, each ([Name] = "dim_calendrier"))
+		in
+		    #"Lignes filtrées"
+	lineageTag: 99ee0688-92be-43ae-af3c-eca4ce831c0d
+	queryGroup: Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'DirectQuery à AS – Referentiel Dimensions' =
+		let
+		    Source = AnalysisServices.Database("powerbi://api.powerbi.com/v1.0/myorg/HomeServe", "Referentiel Dimensions"),
+		    Cubes = Table.Combine(Source[Data]),
+		    Cube = Cubes{[Id="Model", Kind="Cube"]}[Data]
+		in
+		    Cube
+	lineageTag: 907262d6-1c78-486d-9960-f760e5124073
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"bc969d31-24cf-4b2a-a281-d0212483e500"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"1cabe9d5-aef2-4758-974d-ca1c973e7159"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"b0741718-2964-4d50-931e-98d17d423506"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"8e037ac3-21da-4956-828b-1e7170b5fa85"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"f3d00537-5d03-4327-a898-a08f711e5322"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"ea1df02f-495a-47e7-9aa8-bba39fac46f4"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"f374a479-08b2-437f-b20d-be6a988b4b4d"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"4bca0742-6ca2-4c51-8e58-501fb3da583a"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"9d312552-4e31-4f7d-a056-32680728b6e2"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"e737b275-22b4-4002-b9e2-a8e686b42894"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"6d25dd1f-542a-4341-89e0-5fd47c94025b"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"86c4873c-c805-40b8-8f0f-2d8c5bab3a42"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"be2533a4-689d-42a7-81cc-2c9074ba5356"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"6f621a90-cb24-4474-a3a4-fedc897b3c87"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"ecbc66ef-1da6-431c-9f90-0d67b1cf35cc"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"26594687-a9eb-49bc-8346-cac297e3cd54"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"462eab67-d8f4-42a2-a4bb-551877afcdee"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"2947a3cc-d842-49f0-ba97-d1ff49e9a9d7"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"15f6e0f3-da5e-41cf-8028-0adb5e77eec0"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"1c17b11c-ad51-4c11-b362-db1fd25a739b"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"7c432bcf-05da-49c7-ad2b-7de0ef99344b"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"dd2e92b4-4e5a-4a13-a2bc-b00c53278e2b"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"641817a8-a9af-4faa-b9b3-c63808685e3d"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"4692fe01-457b-470c-a5eb-304718e6fd94"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"f8749a37-0aa1-4e2a-bc81-3ad7fc8616d3"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"88921cad-5b92-46dc-b392-bf45af56a861"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"da88ec8f-b6d7-4624-8872-32a99e4778e0"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"b32fc5ff-143c-4d9b-aa5b-9e91f6dc070d"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"e2764e0e-151c-4364-97e5-72610cbe737e"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"a4d9f3b2-b9bb-44c9-85f6-ccbc4a4b65ab"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"85549c9c-5ef4-4a6e-a7c3-aa940729b815"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"d822928c-8f9c-4c4b-bc9e-26d1e1589b5a"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"b1f14808-8c4a-4548-8693-e0edd7fafabf"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"21a42e71-392b-4da5-b5ff-38bd04ca542c"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"37161669-226f-4dad-a742-d4068080bf1e"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"1f6f6d73-01f1-4d86-982c-5557392789fd"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"e5ca0b93-1008-4ea6-bae7-3b9952ff9cc2"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"fa1f7e4f-f63f-4ed0-8ed3-7151ba0ea6b6"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"416f8e1a-38c9-415e-918a-24bcfd55cc1a"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"2e4be371-96e5-470f-a191-88a6f26766fb"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"d9e6081b-2968-43cb-b321-e7b90af62577"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"f72635aa-6e4b-4cc2-87c8-9670beea87ce"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"c3e04a09-2bee-409a-b49b-604f60192ba0"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"a66e814e-1e46-4a52-b502-7a87e7d92caa"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"da53a9f0-3023-4bf4-ac9b-de98ec1937d6"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"a4604ba4-36f6-495e-8f28-14be5bd4ff84"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"e47714c8-09a0-4272-9cd9-c136087c60ad"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"c6022b47-5450-45c4-8dfa-04506fcd3d53"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"bf07b434-cd38-44fa-84cf-16baf04d18a8"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"1923183d-09f0-417c-bd86-2448275c5894"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"0335464c-e2fe-4615-922b-3e469aaf2bda"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"c01b9839-d9ec-4d57-8a33-b800e2846c41"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"82311fc5-6696-4adc-9f71-7e0bf0a958ea"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"51ea3492-dd63-4946-bbb6-e6c6975acde8"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"c37c23a2-1a3a-44d2-87a6-c35c8dd95774"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"eedd99c6-78b4-40e2-b140-9b17a51b375a"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"357b8737-ba25-4b15-a36c-76ad37cddbc2"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"e98a0231-c079-4928-b01a-de9eb4fb42b5"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"f15f196c-2e9c-4c8d-916f-06ba43fc4479"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"704f1c82-a5d6-49bb-b620-becc63bba8e7"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"934ba297-dd8d-4817-ac5a-13959a3ccdcd"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"6882727a-38e2-420a-8830-12221bf80a23"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"57af31f1-225b-462a-89ff-ea3e6c9037dc"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"806b64f1-fb38-4891-91ee-4e71e6979bbe"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"cbd50283-62f7-433a-8361-768b1866e19b"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"973aed4a-c054-47a1-8f56-ae96b691fe45"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"0c9c1b6f-64bd-4427-bdb7-eeafe847c0d7"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"7ad8d087-5307-49d6-b94a-f1aa9988bdbc"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"2574834b-9d5b-427a-a699-280a4b0a060a"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"f7e4de70-7b3d-45b1-a7b6-0fcc64eeb36c"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"8d9316bd-7686-4795-a3fb-7e6ad1930419"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"de0e8d85-2ab1-4995-b39a-4b00990f6da3"}},"objectType":"Table"}]
+
+/// Ce paramètre définit l'environnement du projet haiku-adm.
+expression Projet_adm = "haiku-adm" meta [IsParameterQuery=true, List={"haiku-adm"}, DefaultValue="haiku-adm", Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 64c85684-7a64-4df9-b9b1-b35f631e313d
+	queryGroup: Paramètres
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+/// Requête permettant de récupérer l'ensemble des tables du schéma Modele_Semantique utilisées dans le modèle de données.
+expression Source_powerbi =
+		let
+		    // Projet
+		    Source = GoogleBigQuery.Database([BillingProject=Projet_adm]),
+		    Projet = Source{[Name=Projet_adm]}[Data],
+		    // Schéma
+		    Schema = Projet{[Name="powerbi",Kind="Schema"]}[Data],
+		    // Tables
+		    #"Lignes filtrées" = Table.SelectRows(Schema, each ([Name] <> "api_pbi_abonnement_dashboard" and [Name] <> "api_pbi_abonnement_rapport" and [Name] <> "api_pbi_refreshes" and [Name] <> "microsoft_group" and [Name] <> "microsoft_license" and [Name] <> "microsoft_member" and [Name] <> "microsoft_user"))
+		in
+		    #"Lignes filtrées"
+	lineageTag: 35cdc60f-2128-404a-87ec-508324da8c60
+	queryGroup: Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+/// Requête permettant de récupérer l'ensemble des tables du schéma Modele_Semantique utilisées dans le modèle de données.
+expression Source_DataMart_SIRH =
+		let
+		    // Projet
+		    Source = GoogleBigQuery.Database([BillingProject=Projet_dm]),
+		    Projet = Source{[Name=Projet_dm]}[Data],
+		    // Schéma
+		    Schema = Projet{[Name="DataMart_SIRH",Kind="Schema"]}[Data],
+		    // Tables
+		    #"Lignes filtrées" = Table.SelectRows(Schema, each ([Name] = "dtm_sirh_collaborateurs"))
+		in
+		    #"Lignes filtrées"
+	lineageTag: 63d8e78a-855c-4552-999f-aa0b1d307527
+	queryGroup: Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+/// Requête permettant de récupérer l'ensemble des tables du schéma Modele_Semantique utilisées dans le modèle de données.
+expression Source_catalog =
+		let
+		    // Projet
+		    Source = GoogleBigQuery.Database([BillingProject=Projet_adm]),
+		    Projet = Source{[Name=Projet_adm]}[Data],
+		    // Schéma
+		    Schema = Projet{[Name="catalog",Kind="Schema"]}[Data],
+		    // Tables
+		    #"Lignes filtrées" = Table.SelectRows(Schema, each ([Name] = "catalog_dashboard"))
+		in
+		    #"Lignes filtrées"
+	lineageTag: 1334c29d-b815-4b03-bb1e-ca6a0e9b9504
+	queryGroup: Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

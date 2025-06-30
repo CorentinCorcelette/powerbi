@@ -1,0 +1,84 @@
+table Dim_dataset_parameter
+	lineageTag: 350226f9-21ad-45a1-b386-7209e7ebdeda
+
+	column group_id
+		dataType: string
+		lineageTag: b77069ca-dfd5-4eb5-8182-8a0d0bd1dfef
+		summarizeBy: none
+		sourceColumn: group_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dataset_id
+		dataType: string
+		lineageTag: ba932959-beca-4ae4-aeea-086252302a85
+		summarizeBy: none
+		sourceColumn: dataset_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: cc8d9ca8-81df-4492-82ad-9e952b5b5516
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 7125e6a0-6035-48b0-bd6b-5c40912ba41e
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: ae25bef4-e4b7-493e-b67f-eb9c76cdaadb
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column isRequired
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8f949aab-0e5c-4a2a-9e24-f2f81df5b99e
+		summarizeBy: none
+		sourceColumn: isRequired
+
+		annotation SummarizationSetBy = Automatic
+
+	column currentValue
+		dataType: string
+		lineageTag: a81f7749-136a-4ba4-a5bc-498808da2f4f
+		summarizeBy: none
+		sourceColumn: currentValue
+
+		annotation SummarizationSetBy = Automatic
+
+	column suggestedValues___
+		dataType: string
+		lineageTag: aa68d9ea-c16a-4754-8651-99d9f89314c5
+		summarizeBy: none
+		sourceColumn: suggestedValues___
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_dataset_parameter = m
+		mode: import
+		queryGroup: Dimensions\Dataset
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // api_pbi_dataset_parameter
+				    api_pbi_dataset_parameter_Table = Source{[Name="api_pbi_dataset_parameter",Kind="Table"]}[Data]
+				in
+				    api_pbi_dataset_parameter_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

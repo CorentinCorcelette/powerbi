@@ -1,0 +1,204 @@
+table Dim_catalog_dataset
+	lineageTag: e15f1451-373f-449f-ae26-03cf872e330e
+
+	column id
+		dataType: string
+		lineageTag: bffbb6b5-1237-4e9a-b33b-6f2207a7f34d
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: f278ea40-32de-4f81-9a64-5ff5b5afef79
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column folder_path
+		dataType: string
+		lineageTag: 641911d9-4967-40a2-a150-2bb9d93d1b75
+		summarizeBy: none
+		sourceColumn: folder_path
+
+		annotation SummarizationSetBy = Automatic
+
+	column folder_url
+		dataType: string
+		lineageTag: 1e2923ab-f393-4ab3-a885-db82284482eb
+		summarizeBy: none
+		sourceColumn: folder_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 82effbc8-861a-4630-b664-8ba97ef8eef5
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column description_raw
+		dataType: string
+		lineageTag: 8ecebddf-3e88-4a5d-9863-0b6af05fd7a3
+		summarizeBy: none
+		sourceColumn: description_raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column external_description
+		dataType: string
+		lineageTag: e95cf502-a9e9-4caf-9b4a-65a71bd0575f
+		summarizeBy: none
+		sourceColumn: external_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_deprecated
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f007104b-6e50-407f-9682-396e3d2f765b
+		summarizeBy: none
+		sourceColumn: is_deprecated
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_verified
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 844bc289-5a2e-4bc6-b24a-41ae5fb0e6c4
+		summarizeBy: none
+		sourceColumn: is_verified
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner_emails
+		dataType: string
+		lineageTag: 9817796e-4d83-442f-9a14-ba01eeb72dda
+		summarizeBy: none
+		sourceColumn: owner_emails
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner_names
+		dataType: string
+		lineageTag: 4c5dc2c8-4dab-400f-8a50-89bfff109ca6
+		summarizeBy: none
+		sourceColumn: owner_names
+
+		annotation SummarizationSetBy = Automatic
+
+	column tag_ids
+		dataType: string
+		lineageTag: b6405611-56cb-4ce4-9b2e-1b8b5201a31a
+		summarizeBy: none
+		sourceColumn: tag_ids
+
+		annotation SummarizationSetBy = Automatic
+
+	column tag_labels
+		dataType: string
+		lineageTag: f57817a7-cb4e-4bc7-8bd3-d2f58ba1388e
+		summarizeBy: none
+		sourceColumn: tag_labels
+
+		annotation SummarizationSetBy = Automatic
+
+	column verified_by_id
+		dataType: string
+		lineageTag: d8c38d41-fba3-457a-9bdd-5e5810df511b
+		summarizeBy: none
+		sourceColumn: verified_by_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column verified_by_name
+		dataType: string
+		lineageTag: 17c6581a-4b7f-4030-a4bf-8fbcd022c281
+		summarizeBy: none
+		sourceColumn: verified_by_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column verified_by_email
+		dataType: string
+		lineageTag: 380b9ba4-e9a4-408f-8c8f-dda8ed972739
+		summarizeBy: none
+		sourceColumn: verified_by_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_id
+		dataType: string
+		lineageTag: 4ed37933-37ee-46be-aa92-951bd1d42bc3
+		summarizeBy: none
+		sourceColumn: source_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_name
+		dataType: string
+		lineageTag: ee49b65d-77a9-4d37-8037-f7b4c52b40e8
+		summarizeBy: none
+		sourceColumn: source_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_technology
+		dataType: string
+		lineageTag: 349e9884-9b79-49a7-8d42-02839dde563a
+		summarizeBy: none
+		sourceColumn: source_technology
+
+		annotation SummarizationSetBy = Automatic
+
+	column popularity
+		dataType: double
+		lineageTag: f128f53c-1c6d-4452-beb2-9e293f19dd79
+		summarizeBy: sum
+		sourceColumn: popularity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column slug
+		dataType: string
+		lineageTag: d5505ba5-ebac-47ca-9039-400326926b29
+		summarizeBy: none
+		sourceColumn: slug
+
+		annotation SummarizationSetBy = Automatic
+
+	column webURL
+		dataType: string
+		lineageTag: 797c1d44-6b69-4c32-965b-693000fabecf
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: webURL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_catalog_dataset = m
+		mode: import
+		queryGroup: Dimensions\Catalog
+		source =
+				let
+				    // Source_catalog
+				    Source = Source_catalog,
+				    // catalog_dashboard
+				    api_catalog_dashboard_Table = Source{[Name="catalog_dashboard",Kind="Table"]}[Data],
+				    // Filtre sur les modèles sémantiques Power BI dans Catalog
+				    #"Filtre Power BI & Dataset" = Table.SelectRows(api_catalog_dashboard_Table, each ([source_technology] = "POWERBI") and ([folder_path] = "/__VIZ_MODEL__/Belgique" or [folder_path] = "/__VIZ_MODEL__/Finance" or [folder_path] = "/__VIZ_MODEL__/HES" or [folder_path] = "/__VIZ_MODEL__/HomeServe")),
+				    // Création de l'URL de la page Catalog du modèle sémantique
+				    #"Création colonne webURL" = Table.AddColumn(#"Filtre Power BI & Dataset", "webURL", each "https://app.castordoc.com/dashboards/"&[slug]&"/home")
+				in
+				    #"Création colonne webURL"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

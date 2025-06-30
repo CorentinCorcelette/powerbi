@@ -1,0 +1,157 @@
+table Dim_dashboard_vignette
+	lineageTag: 20ab258f-a03c-4a37-b67c-1da7a0eeb51a
+
+	column group_id
+		dataType: string
+		lineageTag: 69f06983-03b0-4786-afad-225dd69092f5
+		summarizeBy: none
+		sourceColumn: group_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column dashboard_id
+		dataType: string
+		lineageTag: a5e92bc4-6589-4fbf-9b38-9423a8165e39
+		summarizeBy: none
+		sourceColumn: dashboard_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: string
+		lineageTag: 1c836f96-c287-4fe4-8a42-c12b7b25d3b4
+		summarizeBy: none
+		sourceColumn: id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: 9634097e-7d76-472a-bc59-62f7d87bd489
+		summarizeBy: none
+		sourceColumn: title
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column embedUrl
+		dataType: string
+		lineageTag: 2813868e-2d30-49a3-98a0-f875421fded0
+		summarizeBy: none
+		sourceColumn: embedUrl
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowSpan
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d84d02a-6a18-4557-b7c5-69a31fbc6b0c
+		summarizeBy: sum
+		sourceColumn: rowSpan
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column colSpan
+		dataType: int64
+		formatString: 0
+		lineageTag: 06214b84-f017-4b8f-8a7e-0c717ca6bd5e
+		summarizeBy: sum
+		sourceColumn: colSpan
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column reportId
+		dataType: string
+		lineageTag: dac9ed5f-a3a3-49be-990a-df8d6daefc37
+		summarizeBy: none
+		sourceColumn: reportId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column datasetId
+		dataType: string
+		lineageTag: 159e9901-8a96-4d0c-a5b7-cf70451c2eae
+		summarizeBy: none
+		sourceColumn: datasetId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column subTitle
+		dataType: string
+		lineageTag: e5ff2913-e0ad-4ec2-b700-556268c6fe5b
+		summarizeBy: none
+		sourceColumn: subTitle
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column action
+		dataType: string
+		lineageTag: ba8a445a-4332-4178-b120-931733003feb
+		summarizeBy: none
+		sourceColumn: action
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column definition
+		dataType: string
+		lineageTag: 55a6632c-0f54-45e0-ae24-5a75797b1168
+		summarizeBy: none
+		sourceColumn: definition
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 350ba94a-2ce8-475a-a8f8-1cbda36cdbb3
+		summarizeBy: none
+		sourceColumn: name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_dashboard_vignette = m
+		mode: import
+		queryGroup: Dimensions\Dashboard
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // api_pbi_app_dashboard_vignette
+				    pbi_workspace_Table = Source{[Name="api_pbi_dashboard_vignette",Kind="Table"]}[Data],
+				    // Jointure avec Dim_report
+				    #"Requêtes fusionnées" = Table.NestedJoin(pbi_workspace_Table, {"reportId"}, Dim_report, {"id"}, "Dim_report", JoinKind.LeftOuter),
+				    // Récupération du nom du rapport alimentant le tableau de bord
+				    #"Dim_report développé" = Table.ExpandTableColumn(#"Requêtes fusionnées", "Dim_report", {"name"}, {"name"})
+				in
+				    #"Dim_report développé"
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

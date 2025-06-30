@@ -1,0 +1,107 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// Dossier regroupant l'ensemble des paramètres utilisés lors de la connexion de l'ensemble des tables du modèle de données.
+queryGroup Paramètres
+
+	annotation PBI_QueryGroupOrder = 0
+
+/// Dossier regroupant l'ensemble des requêtes sources utilisées pour récupérer l'ensemble des tables du modèle de données.
+queryGroup Source
+
+	annotation PBI_QueryGroupOrder = 1
+
+/// Dossier regroupant l'ensemble des tables de faits du modèle de données.
+queryGroup Facts
+
+	annotation PBI_QueryGroupOrder = 2
+
+/// Dossier regroupant l'ensemble des tables de dimensions du modèle de données.
+queryGroup Dimensions
+
+	annotation PBI_QueryGroupOrder = 4
+
+/// Tables de dimensions relatives à l'object dataset (modèle sémantique) dans Power BI
+queryGroup Dimensions\Dataset
+
+	annotation PBI_QueryGroupOrder = 3
+
+/// Tables de dimensions relatives à l'object rapport dans Power BI
+queryGroup Dimensions\Report
+
+	annotation PBI_QueryGroupOrder = 5
+
+/// Tables de dimensions relatives à l'object dashboard dans Power BI
+queryGroup Dimensions\Dashboard
+
+	annotation PBI_QueryGroupOrder = 2
+
+/// Tables de dimensions relatives à l'object application dans Power BI
+queryGroup Dimensions\Application
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Dimensions\User
+
+	annotation PBI_QueryGroupOrder = 6
+
+queryGroup Dimensions\Microsoft
+
+	annotation PBI_QueryGroupOrder = 4
+
+queryGroup Dimensions\Catalog
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation PBI_QueryOrder = ["Projet_dm","Projet_adm","RangeStart","Source_Modele_Semantique","Actualisation","Mesures","DirectQuery à AS – Referentiel Dimensions","Dim_calendrier","Source_powerbi","Source_catalog","Fact_refresh_history","Dim_dataset","Dim_dataset_report","Dim_dataset_user","Dim_report","Dim_report_user","Dim_dashboard","Dim_dashboard_user","Dim_app","Dim_app_user","Fact_logs_activity","Fact_abonnement_report","Fact_abonnement_dashboard","Dim_workspace_report","Dim_workspace_dataset","Dim_workspace_dashboard","Dim_user","Dim_user_sirh","Dim_user_formation","Dim_app_audience","Dim_app_audience_user","Dim_app_user_audience","Dim_type_activite","Dim_dataset_parameter","Dim_dataset_source","Source_DataMart_SIRH","Dim_catalog_report","Dim_catalog_dataset","Dim_catalog_dashboard","Dim_dashboard_vignette"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.144.1155.0 (25.06)+46435b07013d2a234d7fd007083a9e70b8e79f1c
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["WebModelingEdit","TMDLView_Desktop","DevMode"]
+
+ref table Actualisation
+ref table Mesures
+ref table Dim_calendrier
+ref table Dim_calendrier_periode
+ref table Dim_workspace_report
+ref table Dim_dataset
+ref table Dim_report
+ref table Fact_refresh_history
+ref table Dim_dashboard
+ref table Dim_app
+ref table Fact_logs_activity
+ref table Dim_user
+ref table Dim_dataset_user
+ref table Dim_report_user
+ref table Fact_abonnement_report
+ref table Dim_dashboard_user
+ref table Fact_abonnement_dashboard
+ref table Dim_app_user
+ref table Dim_user_formation
+ref table Dim_app_audience
+ref table Dim_app_audience_user
+ref table Dim_app_user_audience
+ref table Param_activite
+ref table Dim_type_activite
+ref table Dim_dataset_parameter
+ref table Dim_dataset_source
+ref table Dim_user_sirh
+ref table Dim_workspace_dataset
+ref table Dim_workspace_dashboard
+ref table Dim_catalog_report
+ref table Dim_catalog_dataset
+ref table Dim_catalog_dashboard
+ref table Dim_dashboard_vignette
+ref table Dim_dataset_report
+
+ref cultureInfo fr-FR
+

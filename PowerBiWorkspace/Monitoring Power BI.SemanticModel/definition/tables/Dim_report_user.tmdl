@@ -1,0 +1,75 @@
+table Dim_report_user
+	lineageTag: ab868fec-9825-41c0-9ae3-2a6e382aac90
+
+	column report_id
+		dataType: string
+		lineageTag: fb9dbabd-be37-4b80-b697-c8c14b974d76
+		summarizeBy: none
+		sourceColumn: report_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column reportUserAccessRight
+		dataType: string
+		lineageTag: aef76cb0-736b-40c2-96f4-b7f7fc794747
+		summarizeBy: none
+		sourceColumn: reportUserAccessRight
+
+		annotation SummarizationSetBy = Automatic
+
+	column displayName
+		dataType: string
+		lineageTag: 0fd37065-6d35-4b33-be5e-de7f3615b5bc
+		summarizeBy: none
+		sourceColumn: displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column identifier
+		dataType: string
+		lineageTag: a8b91eaa-7ef1-4ba9-a620-70ac5a033e13
+		summarizeBy: none
+		sourceColumn: identifier
+
+		annotation SummarizationSetBy = Automatic
+
+	column graphId
+		dataType: string
+		lineageTag: 96d6ac1d-d927-472c-9cf7-5084cfd6939e
+		summarizeBy: none
+		sourceColumn: graphId
+
+		annotation SummarizationSetBy = Automatic
+
+	column principalType
+		dataType: string
+		lineageTag: b9e7b463-3be4-4b2b-badb-51f8f6f9451f
+		summarizeBy: none
+		sourceColumn: principalType
+
+		annotation SummarizationSetBy = Automatic
+
+	column emailAddress
+		dataType: string
+		lineageTag: 047ab1ba-2a8c-47e8-a274-b216fe5b7ea3
+		summarizeBy: none
+		sourceColumn: emailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_report_user = m
+		mode: import
+		queryGroup: Dimensions\Report
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // api_pbi_user_report
+				    pbi_workspace_Table = Source{[Name="api_pbi_user_report",Kind="Table"]}[Data]
+				in
+				    pbi_workspace_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

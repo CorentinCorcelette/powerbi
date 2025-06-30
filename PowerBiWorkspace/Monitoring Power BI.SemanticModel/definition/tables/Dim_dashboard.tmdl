@@ -1,0 +1,84 @@
+table Dim_dashboard
+	lineageTag: 3e5a6256-446f-497b-b109-7bc25a058c2b
+
+	column id
+		dataType: string
+		lineageTag: b6f9e200-d2d0-40d8-855e-ca1b2630e7ee
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column displayName
+		dataType: string
+		lineageTag: 5f3054d7-2c2b-42c2-b544-cb007c286d3d
+		summarizeBy: none
+		sourceColumn: displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column isReadOnly
+		dataType: string
+		lineageTag: 3eb88f69-fe59-40d7-a20b-bebeecb75966
+		summarizeBy: none
+		sourceColumn: isReadOnly
+
+		annotation SummarizationSetBy = Automatic
+
+	column webUrl
+		dataType: string
+		lineageTag: 00b0f895-7888-4bf4-b7f0-f78d807e0b63
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: webUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column embedUrl
+		dataType: string
+		lineageTag: 87ff229b-99fe-4cd6-8e09-a4a97dc0d737
+		summarizeBy: none
+		sourceColumn: embedUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column users___
+		dataType: string
+		lineageTag: bd34dcf0-00e6-4422-bfad-6c3796072407
+		summarizeBy: none
+		sourceColumn: users___
+
+		annotation SummarizationSetBy = Automatic
+
+	column subscriptions___
+		dataType: string
+		lineageTag: 5f26cf22-e0e9-4952-aca5-27489543c86b
+		summarizeBy: none
+		sourceColumn: subscriptions___
+
+		annotation SummarizationSetBy = Automatic
+
+	column workspace_id
+		dataType: string
+		lineageTag: 887e1253-f061-46cc-8f87-4c6c2c67d6a9
+		summarizeBy: none
+		sourceColumn: workspace_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_dashboard = m
+		mode: import
+		queryGroup: Dimensions\Dashboard
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // api_pbi_dashboards
+				    pbi_workspace_Table = Source{[Name="api_pbi_dashboards",Kind="Table"]}[Data]
+				in
+				    pbi_workspace_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

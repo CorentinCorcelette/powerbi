@@ -1,0 +1,47 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "7df83a88e9acd3504e52",
+  "position": {
+    "x": 811.33333333333337,
+    "y": 95.333333333333329,
+    "z": 13000,
+    "height": 90,
+    "width": 442,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Récupération en cours des détails des actualisations & des rôles dans les modèles sémantiques",
+                    "textStyle": {
+                      "fontSize": "8pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "[CD-17108] Requêtage point de terminaison XMLA - Power BI - Homeserve Jira",
+                    "textStyle": {
+                      "fontSize": "8pt"
+                    },
+                    "url": "https://homeserve.atlassian.net/browse/CD-17108"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

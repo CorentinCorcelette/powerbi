@@ -1,0 +1,537 @@
+/// Référentiel calendrier
+table Dim_calendrier
+	lineageTag: 173b32dc-54aa-4fdb-a9dd-6aacaadbe1c4
+	dataCategory: Time
+
+	/// Identifiant de la ligne du calendrier qui correspond à la date au format AAAAMMJJ (ex: 20100109)
+	column id_calendrier
+		dataType: int64
+		formatString: 0
+		lineageTag: 618e4087-1ebc-42c0-b13a-a3979fe4542a
+		summarizeBy: sum
+		sourceColumn: id_calendrier
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date avec l'heure à 00:00:00
+	column dth_date
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 21a3d294-bb02-4cc1-8c93-965c8852863c
+		summarizeBy: none
+		sourceColumn: dth_date
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date sans l'heure
+	column dt_date
+		dataType: dateTime
+		isKey
+		formatString: Short Date
+		lineageTag: 755334e3-9d8e-4dd5-b7b1-9b44fe82adfe
+		summarizeBy: none
+		sourceColumn: dt_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Format AAAAMMJJ (ex : 20100109)
+	column annee_mois_jour
+		dataType: string
+		lineageTag: 95ce4351-52ff-4b0f-9290-6eb6ab846b90
+		summarizeBy: none
+		sourceColumn: annee_mois_jour
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Format AAAAMM (ex : 202306)
+	column annee_mois
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a034f6b-db62-4b2d-9ad1-311600e94b2f
+		summarizeBy: sum
+		sourceColumn: annee_mois
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Format AAAA - MM (ex : 2023 - 06)
+	column annee_mois_char
+		dataType: string
+		lineageTag: e2846f58-b7b9-4ac1-81c9-a3d1a1f1bed2
+		summarizeBy: none
+		sourceColumn: annee_mois_char
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Flag indiquant 1 lorsqu'il s'agit du dernier jour du mois
+	column fg_dernier_jour_mois
+		dataType: int64
+		formatString: 0
+		lineageTag: 87740e86-4c10-4953-972c-30040ce4d50b
+		summarizeBy: sum
+		sourceColumn: fg_dernier_jour_mois
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Flag indiquant 1 lorsqu'il s'agit d'un jour férié (croisé avec l'open data)
+	column fg_ferie
+		dataType: int64
+		formatString: 0
+		lineageTag: c1d1795b-4086-40fd-b36b-80e6b5c9056a
+		summarizeBy: sum
+		sourceColumn: fg_ferie
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Libellé du jour (ex: lundi de pentecote, assencion)
+	column lb_jour_ferie
+		dataType: string
+		lineageTag: 85659bdc-4a89-4525-9fcf-cd33e86e7c4b
+		summarizeBy: none
+		sourceColumn: lb_jour_ferie
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indique le numéro de la semaine (1 pour Lundi, 7 pour dimanche)
+	column cd_type_jour
+		dataType: int64
+		formatString: 0
+		lineageTag: ba6886b6-cc93-44e7-ad10-a0637ca694f9
+		summarizeBy: sum
+		sourceColumn: cd_type_jour
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indique le type de jour de la semaine en précisant s'il s'agit d'un jour férié (férié / semaine / week-end)
+	column type_jour
+		dataType: string
+		lineageTag: 5a4698c3-1187-4b02-b3e7-b8715d255932
+		summarizeBy: none
+		sourceColumn: type_jour
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Numéro du jour
+	column cd_jour
+		dataType: int64
+		formatString: 0
+		lineageTag: 0324bf5d-dc4d-4809-aa85-72237fa62abe
+		summarizeBy: sum
+		sourceColumn: cd_jour
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Libellé du jour (ex: Lundi)
+	column lb_jour
+		dataType: string
+		lineageTag: d2cfa3e3-15ba-4bf1-adc1-07c723369109
+		summarizeBy: none
+		sourceColumn: lb_jour
+		sortByColumn: cd_type_jour
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Numéro du mois
+	column cd_mois
+		dataType: int64
+		formatString: 0
+		lineageTag: da1008ea-ce3c-49a8-ad7b-31824f2466b5
+		summarizeBy: sum
+		sourceColumn: cd_mois
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Libellé du mois (ex : Janvier)
+	column lb_mois
+		dataType: string
+		lineageTag: 324f3c12-397f-4206-80a9-0e9bbbd9fcca
+		summarizeBy: none
+		sourceColumn: lb_mois
+		sortByColumn: cd_mois
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Année (ex: 2023)
+	column annee
+		dataType: int64
+		formatString: 0
+		lineageTag: e00108d5-5851-4e5a-9aec-64ee6262567d
+		summarizeBy: sum
+		sourceColumn: annee
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Année civile (ex : CY23)
+	column cy
+		dataType: string
+		lineageTag: 07892542-8cd9-4260-b971-d305e369f58a
+		summarizeBy: none
+		sourceColumn: cy
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Semestre Français :  S1 (de janvier à juin), S2 (de juillet à décembre)
+	column semestre_cy
+		dataType: string
+		lineageTag: 69b8edf5-29fb-4100-8030-1546015cbab1
+		summarizeBy: none
+		sourceColumn: semestre_cy
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Trimestre français :  T1 (de janvier à mars), T2 (de mars à juin) T3 (de juillet à septembre) T4 (d'octobre à décembre)
+	column trimestre_cy
+		dataType: string
+		lineageTag: 39df6cca-3b3e-4aab-a51a-09ca1befa384
+		summarizeBy: none
+		sourceColumn: trimestre_cy
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Semaine qui va du jeudi au mercredi et dont le 1er jour de la W01 correspond au 01/01
+	column semaine_anglaise_cy
+		dataType: string
+		lineageTag: da5f6d8c-dc76-47c5-b747-0193ab82fecd
+		summarizeBy: none
+		sourceColumn: semaine_anglaise_cy
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Semaine française allant du lundi au dimanche (ex : S01). La S01 correspond à la première semaine de l'année qui commence le lundi. Il existe donc une semaine S00.
+	column semaine_francaise_cy
+		dataType: string
+		lineageTag: 2c839909-fbc1-4a20-abd1-2646ae89ee38
+		summarizeBy: none
+		sourceColumn: semaine_francaise_cy
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date et heure du premier jour de la semaine française
+	column dth_1er_jour_semaine_francaise
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 703902cb-5d6c-4546-8fe9-5c2fb0de7e8d
+		summarizeBy: none
+		sourceColumn: dth_1er_jour_semaine_francaise
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date et heure du dernier jour de la semaine française
+	column dth_der_jour_semaine_francaise
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5a1f4efe-0348-45a6-a214-aa83f55e0cbb
+		summarizeBy: none
+		sourceColumn: dth_der_jour_semaine_francaise
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Année fiscale allant d'avril à mars A+1 (ex : FY24)
+	column fy
+		dataType: string
+		lineageTag: 0e8382c7-c899-41b1-b089-a905b8b6fa4c
+		summarizeBy: none
+		sourceColumn: fy
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Semestre anglais :  H1 (de mars à septembre), H2 (de octobre à mars A+1)
+	column semestre_fy
+		dataType: string
+		lineageTag: d6d7332b-836c-4ac7-9c51-66f33eb85651
+		summarizeBy: none
+		sourceColumn: semestre_fy
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Trimestre anglais :  Q1 (de mars à juin) Q2 (de juillet à septembre) Q3 (d'octobre à décembre) et Q4 (de janvier à mars A+1)
+	column trimestre_fy
+		dataType: string
+		lineageTag: 29c1b3f8-9ce8-4b5d-9d95-8123da6ac137
+		summarizeBy: none
+		sourceColumn: trimestre_fy
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Semaine qui va du jeudi au mercredi et dont le 1er jour correspond au 01/04
+	column semaine_anglaise_fy
+		dataType: string
+		lineageTag: c57bfe1a-c01b-47e7-af6f-2b240e144fb1
+		summarizeBy: none
+		sourceColumn: semaine_anglaise_fy
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Correspond à fy jusqu'au 31/12/2022, et à partir du 01/01/2023 c'est cy
+	column annee_fiscale
+		dataType: string
+		lineageTag: a7b38dee-54fb-414b-b19f-7542824a5e74
+		summarizeBy: none
+		sourceColumn: annee_fiscale
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Correspond à semestre_fy jusqu'au 31/12/2022 (H1,H2) , et à partir du 01/01/2023 c'est le semestre_cy (S1, S2)
+	column semestre
+		dataType: string
+		lineageTag: 8db3de53-44bd-4057-936c-5b4cb25701f5
+		summarizeBy: none
+		sourceColumn: semestre
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Correspond à trimestre_fy jusqu'au 31/12/2022 (Q1,Q2,Q3, Q4) , et à partir du 01/01/2023 c'est le trimestre_cy (T1, T2, T3, T4)
+	column trimestre
+		dataType: string
+		lineageTag: 3a5ac039-bf0c-4d47-84cf-54077f0d1d56
+		summarizeBy: none
+		sourceColumn: trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Correspond à semaine_anglaise_fy jusqu'au 31/12/2022, et à partir du 01/01/2023 c'est la semaine_anglaise_cy : W01, W02.... W53 (nb: la dénomination ne change pas)
+	column semaine_anglaise
+		dataType: string
+		lineageTag: 17759c24-2d3a-4ced-9689-63c5587bfc31
+		summarizeBy: none
+		sourceColumn: semaine_anglaise
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date et heure du premier jour de la semaine anglaise
+	column dth_1er_jour_semaine_anglaise
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c482a053-9982-4cbf-90ab-c6dd2c27b746
+		summarizeBy: none
+		sourceColumn: dth_1er_jour_semaine_anglaise
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date et heure du dernier jour de la semaine anglaise
+	column dth_der_jour_semaine_anglaise
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eb63f0ca-cb2a-488a-8d98-ded8be96b0b4
+		summarizeBy: none
+		sourceColumn: dth_der_jour_semaine_anglaise
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Nom de la semaine anglaise au format BPC. Contient le mois et l'année, et précise si la semaine est à cheval sur 2 mois (ex : 2023.JAN.W44_1)
+	column semaine_anglaise_bpc
+		dataType: string
+		lineageTag: cd1373db-1f56-43c3-b2cb-a744114a3a40
+		summarizeBy: none
+		sourceColumn: semaine_anglaise_bpc
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date et heure du premier jour de la semaine anglaise bpc
+	column dth_1er_jour_semaine_anglaise_bpc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 79ed4f83-bf41-4ef5-a52e-380ebd979559
+		summarizeBy: none
+		sourceColumn: dth_1er_jour_semaine_anglaise_bpc
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date et heure du dernier jour de la semaine anglaise bpc
+	column dth_der_jour_semaine_anglaise_bpc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e3663ca7-db97-463c-bb3d-ab6d58b0a91d
+		summarizeBy: none
+		sourceColumn: dth_der_jour_semaine_anglaise_bpc
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date et heure correspondant au 1er jour du rolling. C'est le dernier jour du mois précédent la date du jour.
+	column dth_der_jour_rolling
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: acdb1b56-40e9-407f-9394-5c00812505a0
+		summarizeBy: none
+		sourceColumn: dth_der_jour_rolling
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date et heure correspondant au 1er jour du rolling 6 mois correspondant
+	column dth_1er_jour_rolling_6m
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eeec545d-6aed-469d-b0a1-d591091eeeee
+		summarizeBy: none
+		sourceColumn: dth_1er_jour_rolling_6m
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date et heure correspondant au 1er jour du rolling 12 mois correspondant
+	column dth_1er_jour_rolling_12m
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2ffa592d-6048-473d-829b-f392809a0dbc
+		summarizeBy: none
+		sourceColumn: dth_1er_jour_rolling_12m
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date et heure correspondant au 1er jour du rolling 18 mois correspondant
+	column dth_1er_jour_rolling_18m
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fb4ccd69-e238-4a3f-9dd8-87b44e6ef8cf
+		summarizeBy: none
+		sourceColumn: dth_1er_jour_rolling_18m
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date et heure correspondant au 1er jour du rolling 24 mois correspondant
+	column dth_1er_jour_rolling_24m
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fa5e47f9-72b2-4c70-821e-2ad13036669d
+		summarizeBy: none
+		sourceColumn: dth_1er_jour_rolling_24m
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date de référence du calendrier (par défaut J)
+	column date_reference
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 3fc18580-3004-44e6-81d8-f6b2e62c8498
+		summarizeBy: none
+		sourceColumn: date_reference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Basé sur la date de référence, prends les veleurs Année en cours, Année précédente ou l'année
+	column annee_periode
+		dataType: string
+		lineageTag: 56f3e94d-667f-4d7b-a225-ddb3c43841cb
+		summarizeBy: none
+		sourceColumn: annee_periode
+		sortByColumn: annee
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Basé sur la date de référence, prends les veleurs Mois en cours, Mois précédent ou le libellé du mois
+	column mois_periode
+		dataType: string
+		lineageTag: 932f2395-3a70-4c80-bd96-971e633f05ec
+		summarizeBy: none
+		sourceColumn: mois_periode
+		sortByColumn: cd_mois
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Basé sur la date de référence, prends les veleurs Semaine en cours, Semaine précédente ou le libellée de la Semaine française (Ex: S02)
+	column semaine_periode
+		dataType: string
+		lineageTag: 74661fb0-50ac-49ab-b93d-2c7a01618c68
+		summarizeBy: none
+		sourceColumn: semaine_periode
+
+		annotation SummarizationSetBy = Automatic
+
+	column flag_dernier_mois_complet =
+			
+			VAR DernierJourDuMoisPrecedent = EOMONTH(TODAY(), -1)
+			RETURN
+			IF(
+			    Dim_calendrier[dt_date] <= DernierJourDuMoisPrecedent,
+			    1,
+			    0
+			)
+		formatString: 0
+		lineageTag: f760f499-0e57-4249-8cf1-6a38842b02c6
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Hiérarchie date
+	hierarchy calendrier
+		lineageTag: 048600ad-a414-4266-b536-a552e5142a34
+
+		level annee
+			lineageTag: 849763c7-58a6-48fa-bd37-f0365830c465
+			column: annee
+
+		level semestre
+			lineageTag: d58a418f-be98-42b7-8781-2977de83c5af
+			column: semestre_cy
+
+		level trimestre
+			lineageTag: 2bc7b39c-fbad-48f6-9d76-c2bb68cd452d
+			column: trimestre_cy
+
+		level mois
+			lineageTag: 7422a203-baab-46a8-8e64-3b09755861b0
+			column: lb_mois
+
+		level semaine
+			lineageTag: 08e020cc-2a96-48ce-8709-b539111bb353
+			column: semaine_francaise_cy
+
+		level jour
+			lineageTag: ce953282-51f2-4d09-9ddd-e83622aeb5ad
+			column: cd_jour
+
+	hierarchy calendrier_periode
+		lineageTag: 7c2568b0-147c-43bd-9111-06eb49a358df
+
+		level annee
+			lineageTag: dec0ef3e-abb5-4e68-8367-dc6616dc4b12
+			column: annee_periode
+
+		level semestre
+			lineageTag: 59f02986-02ef-423a-9c4d-d030555e67e2
+			column: semestre_cy
+
+		level trimestre
+			lineageTag: 4bfdd878-f437-4b30-8a57-fbcc0999f0dc
+			column: trimestre_cy
+
+		level mois
+			lineageTag: a137b2d0-714d-4505-8581-62024c08505f
+			column: mois_periode
+
+		level semaine
+			lineageTag: 5809d116-549c-4a73-ab3f-d895cab08559
+			column: semaine_periode
+
+		level jour
+			lineageTag: 50601104-1a62-4965-bf02-1160e45a1dfe
+			column: cd_jour
+
+	partition Dim_calendrier = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    // Source_Modele_Semantique
+				    Source = Source_Modele_Semantique,
+				    // dim_calendrier
+				    dim_calendrier = Source{[Name="dim_calendrier",Kind="Table"]}[Data],
+				    // Filtre sur le périmètre temporel pertinent
+				    #"Filtre date" = Table.SelectRows(dim_calendrier, each [dt_date] >= RangeStart and [dt_date] <= List.Max(Actualisation[dt_last_modified]))
+				in
+				    #"Filtre date"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

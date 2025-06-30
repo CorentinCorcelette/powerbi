@@ -1,0 +1,58 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "932e932731c19d740a0d",
+      "displayName": "Filtre OK",
+      "children": [
+        "82a377918791061abe77",
+        "3425f66f80a13b235128",
+        "17bc81efb24d6d05c7ec",
+        "88f106799c58ade806c7"
+      ]
+    },
+    {
+      "name": "cae6a4b6ed1cb9b05822",
+      "displayName": "Filtre KO",
+      "children": [
+        "7e0309669b2e79cbd968",
+        "15b9c6a11059a474468d",
+        "2ef8d4a063d763b4a44b",
+        "7b41eb67b12e38479bf8",
+        "b73d2b6507dc52c5905d",
+        "ca357ee148094bb208c3",
+        "3026b87783c0703129a1",
+        "668f54259d5a46d8e295",
+        "7711efb011297ca457b2",
+        "a904755e5bda421d0918",
+        "738c6933d65e06896c7d",
+        "357b0570d3536060c156",
+        "5fe430102056b68cc2a9",
+        "efba9e23c570000ce164",
+        "150514a604a03a01b6ea",
+        "d5ba8a9ee4393d440d00",
+        "cd29ce905d22ec76b8e0",
+        "27fd740b52ae8be620ea",
+        "c113b5f091006d5602a3",
+        "d491090766ee67364009",
+        "159fe7e1803480858462",
+        "9678017352cb5aa07441",
+        "2245e37d149a019385e2",
+        "e78900b717403c246c97",
+        "d926d6ccd16cd6479166",
+        "0b4860c000502e703ac7",
+        "1407b8b857c578aa909c",
+        "06181e40e103ea5500a5",
+        "572565ff76b6ae773531",
+        "a5d1f2b3b6ed52d10ccc",
+        "80dc2111190da6a90e55",
+        "46828c3f7279300be12a",
+        "cf8a1ab3a66176420ea1",
+        "078cad3b8c6b80102019",
+        "0f0944800399e2a4d809",
+        "38089f61460dd3dcc01c",
+        "c4fa77b60dd9d3521a6d"
+      ]
+    }
+  ]
+}

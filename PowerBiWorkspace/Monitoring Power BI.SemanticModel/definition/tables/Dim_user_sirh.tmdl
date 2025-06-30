@@ -1,0 +1,192 @@
+table Dim_user_sirh
+	lineageTag: d1ac8bb6-6da9-46e8-8d91-c73ca331f13d
+
+	column dt_mise_a_jour
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8a8f39ab-e22b-454c-8b94-36db129db6c0
+		summarizeBy: none
+		sourceColumn: dt_mise_a_jour
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column matricule
+		dataType: string
+		lineageTag: 289c6dfd-0175-44ed-a44b-d9ef14b723df
+		summarizeBy: none
+		sourceColumn: matricule
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_login
+		dataType: string
+		lineageTag: 8c3c088b-33d7-4d8b-b2fd-bcaabc6c9258
+		summarizeBy: none
+		sourceColumn: id_login
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom
+		dataType: string
+		lineageTag: 1170dbe6-b699-4d44-ab75-f50241353119
+		summarizeBy: none
+		sourceColumn: nom
+
+		annotation SummarizationSetBy = Automatic
+
+	column prenom
+		dataType: string
+		lineageTag: 05d0f9f5-dc94-40c1-95df-a0c78cb86833
+		summarizeBy: none
+		sourceColumn: prenom
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 30e2a7be-82dd-4602-b568-aa36cd52b839
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column dt_debut
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5401d542-760a-4964-bb8b-8f27c6ae43ce
+		summarizeBy: none
+		sourceColumn: dt_debut
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dt_fin
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f77327d2-118f-40b7-9036-9c9eeb7ff3e2
+		summarizeBy: none
+		sourceColumn: dt_fin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column lb_contrat
+		dataType: string
+		lineageTag: a96a6ee1-2f45-4798-bc5e-31a2c6888e31
+		summarizeBy: none
+		sourceColumn: lb_contrat
+
+		annotation SummarizationSetBy = Automatic
+
+	column lb_poste_actuel
+		dataType: string
+		lineageTag: 77225445-ccb8-4a02-9dee-29415443b26b
+		summarizeBy: none
+		sourceColumn: lb_poste_actuel
+
+		annotation SummarizationSetBy = Automatic
+
+	column lb_role
+		dataType: string
+		lineageTag: e712d74b-716e-40c4-801e-582031e06f2c
+		summarizeBy: none
+		sourceColumn: lb_role
+
+		annotation SummarizationSetBy = Automatic
+
+	column lb_senior
+		dataType: string
+		lineageTag: d7d2885c-fb03-4186-ae22-c51afe9206f9
+		summarizeBy: none
+		sourceColumn: lb_senior
+
+		annotation SummarizationSetBy = Automatic
+
+	column lb_site
+		dataType: string
+		lineageTag: 4f4717b6-3cb6-4943-b4cb-6b3e49fd8a7b
+		summarizeBy: none
+		sourceColumn: lb_site
+
+		annotation SummarizationSetBy = Automatic
+
+	column lb_localisation_1
+		dataType: string
+		lineageTag: 5237055f-6f0d-463b-b9b7-f0002e0c0f64
+		summarizeBy: none
+		sourceColumn: lb_localisation_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column lb_localisation_2
+		dataType: string
+		lineageTag: d4ab704d-aa26-4722-8479-d69b967853ad
+		summarizeBy: none
+		sourceColumn: lb_localisation_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column lb_localisation_3
+		dataType: string
+		lineageTag: 0e9eba02-1c64-4646-9016-33f428d511c7
+		summarizeBy: none
+		sourceColumn: lb_localisation_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column lb_localisation_4
+		dataType: string
+		lineageTag: cd81cf91-4fa8-4984-b956-724658d3d237
+		summarizeBy: none
+		sourceColumn: lb_localisation_4
+
+		annotation SummarizationSetBy = Automatic
+
+	column lb_localisation_5
+		dataType: string
+		lineageTag: 51d8d14a-cfdf-4103-bea2-abd253afa319
+		summarizeBy: none
+		sourceColumn: lb_localisation_5
+
+		annotation SummarizationSetBy = Automatic
+
+	column matricule_manager
+		dataType: string
+		lineageTag: 2eb24442-eb3e-4880-8341-23f8541b997c
+		summarizeBy: none
+		sourceColumn: matricule_manager
+
+		annotation SummarizationSetBy = Automatic
+
+	column email@
+		dataType: string
+		lineageTag: f0937195-bd3a-4303-a927-68b2eae5f5fe
+		summarizeBy: none
+		sourceColumn: email@
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_user_sirh = m
+		mode: import
+		queryGroup: Dimensions\User
+		source =
+				let
+				    // Source_DataMart_SIRH
+				    Source = Source_DataMart_SIRH,
+				    // dtm_sirh_collaborateurs
+				    dtm_sirh_collaborateurs_Table = Source{[Name="dtm_sirh_collaborateurs",Kind="Table"]}[Data],
+				    // [email] <> null pour éviter une relation (*;*) avec Dim_user
+				    #"Filtre email null" = Table.SelectRows(dtm_sirh_collaborateurs_Table, each ([email] <> null)),
+				    // Text.BeforeDelimiter([email], "@") afin de faciliter la correspondance avec Dim_user
+				    #"Retrait texte après @" = Table.AddColumn(#"Filtre email null", "email@", each Text.BeforeDelimiter([email], "@"), type text)
+				in
+				    #"Retrait texte après @"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

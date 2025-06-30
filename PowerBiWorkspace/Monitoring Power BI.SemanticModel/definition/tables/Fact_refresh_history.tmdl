@@ -1,0 +1,156 @@
+table Fact_refresh_history
+	lineageTag: 353dd8c7-7c82-4c4c-9dbe-140729047cfd
+
+	column startTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b6b22a0d-9b0c-42c9-b13d-f424efce93da
+		summarizeBy: none
+		sourceColumn: startTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column endTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b6399c1c-3fe9-4884-ac15-22668956f26a
+		summarizeBy: none
+		sourceColumn: endTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 32631967-d5e5-4503-b547-b5f1207a6829
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column refreshType
+		dataType: string
+		lineageTag: 9fc3b288-bb02-4b7d-b6c2-cc3c698d31fe
+		summarizeBy: none
+		sourceColumn: refreshType
+
+		annotation SummarizationSetBy = Automatic
+
+	column requestId
+		dataType: string
+		lineageTag: f1c453da-9989-4a3d-9542-6860c987e4b0
+		summarizeBy: none
+		sourceColumn: requestId
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: string
+		lineageTag: 31ced53e-6530-4c36-ad7a-d5d4f9c03b37
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column refreshAttempts___
+		dataType: string
+		lineageTag: 54a1f2ab-f963-4da8-b5d5-665b91af3408
+		summarizeBy: none
+		sourceColumn: refreshAttempts___
+
+		annotation SummarizationSetBy = Automatic
+
+	column attemptId
+		dataType: string
+		lineageTag: 072e3eb1-5769-4ee5-bc9c-46765c32abb5
+		summarizeBy: none
+		sourceColumn: attemptId
+
+		annotation SummarizationSetBy = Automatic
+
+	column startTime1
+		dataType: string
+		lineageTag: f25ca6e4-00f4-48f4-a694-92c48dce58cd
+		summarizeBy: none
+		sourceColumn: startTime1
+
+		annotation SummarizationSetBy = Automatic
+
+	column endTime1
+		dataType: string
+		lineageTag: 7ad50e7a-8de0-4b91-9c3a-d3da49cff859
+		summarizeBy: none
+		sourceColumn: endTime1
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 013607a4-e4ae-435d-9e4d-e8b1f2d9f4c3
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column workspace_id
+		dataType: string
+		lineageTag: 8e76c739-4638-4849-a9c9-db660660d9af
+		summarizeBy: none
+		sourceColumn: workspace_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dataset_id
+		dataType: string
+		lineageTag: 46a3f68f-ccf4-4fd7-a20d-f8386964a08f
+		summarizeBy: none
+		sourceColumn: dataset_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column startTime_raw
+		dataType: string
+		lineageTag: a9b61d21-f43b-4b50-8982-db7a22fa9ce3
+		summarizeBy: none
+		sourceColumn: startTime_raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column endTime_raw
+		dataType: string
+		lineageTag: 8ccf5a52-008a-470c-963a-53ebaeca3d3b
+		summarizeBy: none
+		sourceColumn: endTime_raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column temps_actualisation = ```
+			DATEDIFF(Fact_refresh_history[startTime], Fact_refresh_history[endTime], HOUR) * 60 +
+			DATEDIFF(Fact_refresh_history[startTime], Fact_refresh_history[endTime], MINUTE) 
+			    - DATEDIFF(Fact_refresh_history[startTime], Fact_refresh_history[endTime], HOUR) * 60
+			```
+		formatString: 0 min
+		lineageTag: 9a759a38-83f8-44e0-baf8-0acbe445d9ab
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	partition Fact_refresh_history = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // pbi_refreshes
+				    pbi_workspace_Table = Source{[Name="pbi_refreshes",Kind="Table"]}[Data],
+				    // Modification type date/heure pour calcul temps d'actualisation du modèle
+				    #"Type modifié" = Table.TransformColumnTypes(pbi_workspace_Table,{{"startTime", type datetime}, {"endTime", type datetime}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

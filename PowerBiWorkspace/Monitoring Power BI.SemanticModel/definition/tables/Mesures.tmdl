@@ -1,0 +1,162 @@
+/// Table des KPIs.
+table Mesures
+	lineageTag: 38e5e1b6-3bb6-4b33-999d-87558e8fb4e4
+
+	/// //Nb de jours
+	/// DISTINCTCOUNT ( Dim_calendrier[dt_date] )
+	measure 'Nb workspaces' = DISTINCTCOUNT(Dim_workspace_report[id])
+		formatString: #,0
+		lineageTag: 3e5f1800-46ba-4eb4-8486-082c98425101
+
+	measure 'Nb applications' = DISTINCTCOUNT(Dim_app[id])
+		formatString: #,0
+		lineageTag: 92a5d3ee-b986-413b-881e-cc22f385e56c
+
+	measure 'Nb datasets' = DISTINCTCOUNT(Dim_dataset[id])
+		formatString: #,0
+		lineageTag: c3e9d8f3-6557-44f4-ba01-7b5d92982f07
+
+	measure 'Nb rapports' = DISTINCTCOUNT(Dim_report[id])
+		formatString: #,0
+		lineageTag: ee7e87c4-1c39-45a3-8da6-7bf6f7f648c8
+
+	measure 'Nb users' = DISTINCTCOUNT(Dim_user[id_utilisateur])
+		formatString: #,0
+		lineageTag: 02724bab-8ee1-4604-9179-254de9f63641
+
+	measure 'Nb licences pros' = CALCULATE([Nb users], Dim_user[fg_powerbi_pro] = TRUE())
+		formatString: #,0
+		lineageTag: e8c47c10-6041-4c97-9002-5672886a0cab
+
+	measure 'Nb licences free' = CALCULATE([Nb users], Dim_user[fg_powerbi_standard] = TRUE())
+		formatString: #,0
+		lineageTag: 75467738-0425-4827-85e4-a0ac321a9e76
+
+	measure 'Nb licences free & pros' = CALCULATE([Nb users], Dim_user[fg_powerbi_pro] =TRUE(), Dim_user[fg_powerbi_standard] = TRUE())
+		formatString: #,0
+		lineageTag: e5f0838e-a070-46a7-8b19-5c9b057b29eb
+
+	measure 'Nb users sans licence' = CALCULATE([Nb users], Dim_user[fg_powerbi_license] = FALSE())
+		formatString: #,0
+		lineageTag: f5d6b52a-d1c1-4cf1-af70-a224508f5c51
+
+	measure 'Nb users admin' = CALCULATE([Nb users], Dim_user[fg_admin] = TRUE())
+		formatString: #,0
+		lineageTag: 81a606a7-9c6b-42e8-9008-1df8854da8f1
+
+	measure 'Nb users contributeur' = CALCULATE([Nb users], Dim_user[fg_contributor] = TRUE())
+		formatString: #,0
+		lineageTag: 92cc3348-5501-434d-a6a6-0536e2904e12
+
+	measure 'Nb users viewer' = CALCULATE([Nb users], Dim_user[fg_viewer] = TRUE())
+		formatString: #,0
+		lineageTag: e26fdcef-cb63-4bba-930d-6f44fc75fb74
+
+	measure 'Nb users contributeur finance' = CALCULATE([Nb users], Dim_user[fg_workspace_finance_contributor] = TRUE())
+		formatString: #,0
+		lineageTag: 8dd08573-e796-4ca3-bf2c-433597db1a04
+
+	measure 'Nb users viewer finance' = CALCULATE([Nb users], Dim_user[fg_workspace_finance_viewer] = TRUE())
+		formatString: #,0
+		lineageTag: a1e49350-b7d2-49a6-a900-c6afcb27e00f
+
+	measure 'Nb dashboards' = DISTINCTCOUNT(Dim_dashboard[id])
+		formatString: #,0
+		lineageTag: b437ccf6-c0ab-474e-ba0a-0f61b20bcf00
+
+	measure 'Nb activites' = DISTINCTCOUNT(Fact_logs_activity[Id])
+		formatString: #,0
+		lineageTag: f0244c7b-a76b-4085-8fd6-113b32e6df2f
+
+	measure 'Nb abonnements rapport' = DISTINCTCOUNT(Fact_abonnement_report[id])
+		formatString: #,0
+		lineageTag: 6e42c6f8-736c-4db3-a635-5a3eea26ee7d
+
+	measure 'Nb abonnes rapport' = COUNTROWS(Fact_abonnement_report)
+		formatString: #,0
+		lineageTag: 5a1cd702-3a94-49d4-a6cd-e15e80c1d9ff
+
+	measure 'Nb vues rapport' = CALCULATE([Nb activites], Fact_logs_activity[Activity] = "ViewReport")
+		formatString: #,0
+		lineageTag: 0e8f0dac-8ad3-41a9-9c4e-a4647cca9456
+
+	measure 'Nb vues rapport unique' =
+			CALCULATE(
+			    DISTINCTCOUNT(Fact_logs_activity[UserId]),
+			    Fact_logs_activity[Activity] = "ViewReport"
+			)
+		formatString: 0
+		lineageTag: d0cdd872-20cb-45f3-ad97-f09e6b4a5b13
+
+	measure 'Nb vues dashboard' = CALCULATE([Nb activites], Fact_logs_activity[Activity] = "ViewDashboard")
+		formatString: #,0
+		lineageTag: 2201ac05-82c4-4979-9500-0ac963235648
+
+	measure 'Nb vues dashboard unique' =
+			CALCULATE(
+			    DISTINCTCOUNT(Fact_logs_activity[UserId]),
+			    Fact_logs_activity[Activity] = "ViewDashboard"
+			)
+		formatString: 0
+		lineageTag: 244ba2a2-4fe7-474c-b7e7-69a6386c5e2a
+
+	measure 'Nb abonnements dashboard' = DISTINCTCOUNT(Fact_abonnement_dashboard[id])
+		formatString: #,0
+		lineageTag: b06bea15-e1a6-49d1-ba0f-17829559b621
+
+	measure 'Nb abonnes dashboard' = COUNTROWS(Fact_abonnement_dashboard)
+		formatString: #,0
+		lineageTag: 32627045-dcfb-4529-b5d9-788335de0193
+
+	measure 'Nb users formation niveau 1' = CALCULATE(COUNTROWS(Dim_user_formation), Dim_user_formation[fg_formation_n1] = TRUE())
+		formatString: #,0
+		lineageTag: 8f0f172c-571a-46e7-b6b1-8e4bbe3aa28e
+
+	measure 'Nb users formation niveau 1 & 2' = CALCULATE(COUNTROWS(Dim_user_formation), Dim_user_formation[fg_formation_n2] = TRUE())
+		formatString: #,0
+		lineageTag: c05617b6-0e89-4dd9-82d3-767d6fad18be
+
+	measure 'Nb users formation niveau 1 & 2 & 3' = CALCULATE(COUNTROWS(Dim_user_formation), Dim_user_formation[fg_formation_n3] = TRUE())
+		formatString: #,0
+		lineageTag: 3d6aaa58-3cc2-4b6b-817a-6283f7164c9d
+
+	measure 'Nb vues rapport application' = CALCULATE([Nb activites], Fact_logs_activity[Activity] = "ViewReport" && NOT ISBLANK(Fact_logs_activity[AppId] ))
+		formatString: #,0
+		lineageTag: 8f5abc8d-4fa2-497b-bf69-099af335319e
+
+	measure 'Nb vues rapport app unique' =
+			CALCULATE(
+			    DISTINCTCOUNT(Fact_logs_activity[UserId]),
+			    Fact_logs_activity[Activity] = "ViewReport" && NOT ISBLANK(Fact_logs_activity[AppId])
+			)
+		formatString: #,0
+		lineageTag: 22dcc296-e0c2-47c2-a8ca-1a70c3a67e4d
+
+	measure 'Nb audiences' = DISTINCTCOUNT(Dim_app_audience[id])
+		formatString: #,0
+		lineageTag: f7884e5e-5526-403f-9f98-f23c7e5a52a3
+
+	measure 'Nb users audiences' = DISTINCTCOUNT(Dim_app_user_audience[id])
+		formatString: #,0
+		lineageTag: 2ce6f9ec-6e4c-4b1e-895e-4c00ccb0f443
+
+	measure 'Nb activites pro' =
+			
+			//Nb activités réalisés nécessitant une licence Power BI Pro
+			CALCULATE([Nb activites], Dim_type_activite[fg_required_licence_pro] = 1)
+		formatString: #,0
+		lineageTag: 8fe5092d-bdef-422e-98b2-39ae4bc7dd2b
+
+	partition Mesures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Colonne 1" = _t]),
+				    #"Colonnes supprimées" = Table.RemoveColumns(Source,{"Colonne 1"})
+				in
+				    #"Colonnes supprimées"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

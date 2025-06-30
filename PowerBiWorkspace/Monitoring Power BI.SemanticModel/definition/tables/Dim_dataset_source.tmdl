@@ -1,0 +1,67 @@
+table Dim_dataset_source
+	lineageTag: 5edd1163-af4e-4ed9-9d52-ce206d161fdc
+
+	column group_id
+		dataType: string
+		lineageTag: e46cc1cb-627e-43cd-8a99-961b8c4fa2e0
+		summarizeBy: none
+		sourceColumn: group_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dataset_id
+		dataType: string
+		lineageTag: 09424c49-2b25-4ff8-8b78-2f3c61f7a4ff
+		summarizeBy: none
+		sourceColumn: dataset_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column datasourceType
+		dataType: string
+		lineageTag: 4e8c0a86-5ca4-4394-8dc0-0526e1158b91
+		summarizeBy: none
+		sourceColumn: datasourceType
+
+		annotation SummarizationSetBy = Automatic
+
+	column connectionDetails
+		dataType: string
+		lineageTag: d0529f8c-34f0-49c6-9dd2-51271b29ee6e
+		summarizeBy: none
+		sourceColumn: connectionDetails
+
+		annotation SummarizationSetBy = Automatic
+
+	column datasourceId
+		dataType: string
+		lineageTag: a744954f-aa10-4573-94ce-8811ac9abc63
+		summarizeBy: none
+		sourceColumn: datasourceId
+
+		annotation SummarizationSetBy = Automatic
+
+	column gatewayId
+		dataType: string
+		lineageTag: f51b6d2d-ee43-4a47-980d-c7dbe9483909
+		summarizeBy: none
+		sourceColumn: gatewayId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_dataset_source = m
+		mode: import
+		queryGroup: Dimensions\Dataset
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // api_pbi_dataset_source_modele
+				    api_pbi_dataset_source_modele_Table = Source{[Name="api_pbi_dataset_source_modele",Kind="Table"]}[Data]
+				in
+				    api_pbi_dataset_source_modele_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

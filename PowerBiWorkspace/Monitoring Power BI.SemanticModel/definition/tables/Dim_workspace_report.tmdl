@@ -1,0 +1,75 @@
+table Dim_workspace_report
+	lineageTag: 307f5b6f-74a9-4385-ae1d-db944ed7e17f
+
+	column id
+		dataType: string
+		lineageTag: 01e30ac4-4760-40eb-825d-8e89b1197445
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column isReadOnly
+		dataType: string
+		lineageTag: 37ff922b-b891-42cb-af7e-4c6a5401e675
+		summarizeBy: none
+		sourceColumn: isReadOnly
+
+		annotation SummarizationSetBy = Automatic
+
+	column isOnDedicatedCapacity
+		dataType: string
+		lineageTag: 313964e9-9d76-4159-945a-d5b7a6cfd44b
+		summarizeBy: none
+		sourceColumn: isOnDedicatedCapacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column capacityId
+		dataType: string
+		lineageTag: d366ebd0-1fd0-4aa7-a2c2-73bd37e0138e
+		summarizeBy: none
+		sourceColumn: capacityId
+
+		annotation SummarizationSetBy = Automatic
+
+	column defaultDatasetStorageFormat
+		dataType: string
+		lineageTag: 5ffc15e4-3c6a-4c3f-8228-06575b58fa97
+		summarizeBy: none
+		sourceColumn: defaultDatasetStorageFormat
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 15fed89d-cd83-448c-a51b-eacd3b3d03c0
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 7fdd8796-9663-404a-87a8-d47fa6b074fd
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_workspace_report = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // api_pbi_group
+				    pbi_workspace_Table = Source{[Name="api_pbi_group",Kind="Table"]}[Data]
+				in
+				    pbi_workspace_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

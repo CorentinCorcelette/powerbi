@@ -1,0 +1,372 @@
+table Dim_user
+	lineageTag: a0a11c5f-acd8-4cb6-b299-e11e1183a1ee
+
+	column id_utilisateur
+		dataType: string
+		lineageTag: eee49782-470f-4536-a846-11456e012967
+		summarizeBy: none
+		sourceColumn: id_utilisateur
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_prenom
+		dataType: string
+		lineageTag: fab70577-8f3c-41c1-8b4c-1f2fda6d3394
+		summarizeBy: none
+		sourceColumn: nom_prenom
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 167bd924-b10c-449d-85e5-40ac85ca3e50
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_utilisateur_invite
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 604efd93-0d98-4627-a961-d8db3d72f138
+		summarizeBy: none
+		sourceColumn: fg_utilisateur_invite
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_admin
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5f149cc1-3b1a-4d38-974b-90f6e7cf7a4e
+		summarizeBy: none
+		sourceColumn: fg_admin
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_contributor
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2ff2e05a-e08d-4639-867d-7702808a1870
+		summarizeBy: none
+		sourceColumn: fg_contributor
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_viewer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4c6a080d-394a-48dc-a946-3a5cc879e249
+		summarizeBy: none
+		sourceColumn: fg_viewer
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_archives_admin
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 61c5b686-bff8-4647-a96a-4238375e62ab
+		summarizeBy: none
+		sourceColumn: fg_workspace_archives_admin
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_archives_contributor
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ff6957a9-9c37-41e1-8c55-9854d779fae0
+		summarizeBy: none
+		sourceColumn: fg_workspace_archives_contributor
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_archives_viewer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a884957b-7721-4575-81d5-d254e200dc6c
+		summarizeBy: none
+		sourceColumn: fg_workspace_archives_viewer
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_belgique_admin
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1e6c2d19-a8f7-4fe2-ad7e-89334f18c7f9
+		summarizeBy: none
+		sourceColumn: fg_workspace_belgique_admin
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_belgique_contributor
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7921601c-9b81-46c4-954f-045ddf2d88a0
+		summarizeBy: none
+		sourceColumn: fg_workspace_belgique_contributor
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_belgique_viewer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 87ecba3f-5a0b-4655-bcaa-e9f42319ffa1
+		summarizeBy: none
+		sourceColumn: fg_workspace_belgique_viewer
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_finance_admin
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 733fccf6-f762-4e11-be48-42654effdf83
+		summarizeBy: none
+		sourceColumn: fg_workspace_finance_admin
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_finance_contributor
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: af3e901c-eb6b-40b7-a010-a381a0641b4c
+		summarizeBy: none
+		sourceColumn: fg_workspace_finance_contributor
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_finance_viewer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8ad23690-7cf6-489d-bdc8-eca640d4c3ba
+		summarizeBy: none
+		sourceColumn: fg_workspace_finance_viewer
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_formation_admin
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1e941942-a14a-49ca-b5c6-439ed30b370b
+		summarizeBy: none
+		sourceColumn: fg_workspace_formation_admin
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_formation_contributor
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c6b211eb-a915-42d2-bb3f-613a1fc37b71
+		summarizeBy: none
+		sourceColumn: fg_workspace_formation_contributor
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_formation_viewer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a55223a2-a335-4de5-a3f7-851216242130
+		summarizeBy: none
+		sourceColumn: fg_workspace_formation_viewer
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_hes_admin
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 338c5170-8746-4e75-b07e-272687c55617
+		summarizeBy: none
+		sourceColumn: fg_workspace_hes_admin
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_hes_contributor
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d4da7b1b-b0d1-45a3-8023-37462acefd99
+		summarizeBy: none
+		sourceColumn: fg_workspace_hes_contributor
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_hes_viewer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e46f701d-d14e-46ab-8ea4-59558a07b985
+		summarizeBy: none
+		sourceColumn: fg_workspace_hes_viewer
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_homeserve_admin
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 702d833f-a9c8-41de-abab-3b4f07ec508c
+		summarizeBy: none
+		sourceColumn: fg_workspace_homeserve_admin
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_homeserve_contributor
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7bd17791-07db-4623-a3b7-64351e521c51
+		summarizeBy: none
+		sourceColumn: fg_workspace_homeserve_contributor
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_homeserve_viewer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3b7944d5-6a9c-4a12-baa6-20450117a447
+		summarizeBy: none
+		sourceColumn: fg_workspace_homeserve_viewer
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_outsourcers_admin
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3497a28b-e8fe-4947-a3a5-03c113274f03
+		summarizeBy: none
+		sourceColumn: fg_workspace_outsourcers_admin
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_outsourcers_contributor
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e5640927-7148-4841-8c1a-b2379e4b4d92
+		summarizeBy: none
+		sourceColumn: fg_workspace_outsourcers_contributor
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_outsourcers_viewer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3c328efc-1f35-4814-bb77-fa7f40801542
+		summarizeBy: none
+		sourceColumn: fg_workspace_outsourcers_viewer
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_partenaires_admin
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bb693acd-2356-4f1b-acf4-05ab5e0ded93
+		summarizeBy: none
+		sourceColumn: fg_workspace_partenaires_admin
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_partenaires_contributor
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 41be6e69-e6b4-4d3e-ba6a-d20f40cd4e52
+		summarizeBy: none
+		sourceColumn: fg_workspace_partenaires_contributor
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_partenaires_viewer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3f4419f8-d0a6-4200-82d2-3d092a0a9866
+		summarizeBy: none
+		sourceColumn: fg_workspace_partenaires_viewer
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_recette_admin
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 55e58890-3e5f-42cd-a297-ae8a551741c4
+		summarizeBy: none
+		sourceColumn: fg_workspace_recette_admin
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_recette_contributor
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4262f3bc-894c-46d5-b1b9-f06e063d707a
+		summarizeBy: none
+		sourceColumn: fg_workspace_recette_contributor
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_workspace_recette_viewer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 407d346b-f201-4724-8faf-409224404c72
+		summarizeBy: none
+		sourceColumn: fg_workspace_recette_viewer
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_powerbi_license
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 26f55b69-0a9b-4406-9716-34480af8e811
+		summarizeBy: none
+		sourceColumn: fg_powerbi_license
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_powerbi_pro
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 16e59139-2e57-4995-9326-87541d658779
+		summarizeBy: none
+		sourceColumn: fg_powerbi_pro
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_powerbi_standard
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a3d6bcd8-839c-4282-80b1-78c46d1ee1a4
+		summarizeBy: none
+		sourceColumn: fg_powerbi_standard
+
+		annotation SummarizationSetBy = Automatic
+
+	column fg_powerbi_groupe
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 12a17e27-6963-4b28-9889-800f05b75a58
+		summarizeBy: none
+		sourceColumn: fg_powerbi_groupe
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserId@
+		dataType: string
+		lineageTag: 243c72e1-df0a-4519-a9eb-18903418e2e6
+		summarizeBy: none
+		sourceColumn: UserId@
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_user = m
+		mode: import
+		queryGroup: Dimensions\User
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // cc_groups
+				    cc_users_unique_Table = Source{[Name="pbi_users",Kind="Table"]}[Data],
+				    // Modification des types de données
+				    #"Type modifié" = Table.TransformColumnTypes(cc_users_unique_Table,{{"fg_utilisateur_invite", type logical}, {"fg_admin", type logical}, {"fg_contributor", type logical}, {"fg_viewer", type logical}, {"fg_workspace_archives_admin", type logical}, {"fg_workspace_archives_contributor", type logical}, {"fg_workspace_archives_viewer", type logical}, {"fg_workspace_belgique_admin", type logical}, {"fg_workspace_belgique_contributor", type logical}, {"fg_workspace_belgique_viewer", type logical}, {"fg_workspace_finance_admin", type logical}, {"fg_workspace_finance_contributor", type logical}, {"fg_workspace_finance_viewer", type logical}, {"fg_workspace_formation_admin", type logical}, {"fg_workspace_formation_contributor", type logical}, {"fg_workspace_formation_viewer", type logical}, {"fg_workspace_hes_admin", type logical}, {"fg_workspace_hes_contributor", type logical}, {"fg_workspace_hes_viewer", type logical}, {"fg_workspace_homeserve_admin", type logical}, {"fg_workspace_homeserve_contributor", type logical}, {"fg_workspace_homeserve_viewer", type logical}, {"fg_workspace_outsourcers_admin", type logical}, {"fg_workspace_outsourcers_contributor", type logical}, {"fg_workspace_outsourcers_viewer", type logical}, {"fg_workspace_partenaires_admin", type logical}, {"fg_workspace_partenaires_contributor", type logical}, {"fg_workspace_partenaires_viewer", type logical}, {"fg_workspace_recette_admin", type logical}, {"fg_workspace_recette_contributor", type logical}, {"fg_workspace_recette_viewer", type logical}, {"fg_powerbi_license", type logical}, {"fg_powerbi_pro", type logical}, {"fg_powerbi_standard", type logical}, {"fg_powerbi_groupe", type logical}}),
+				    // "email", Text.Lower, type text afin de faciliter la correspondance avec Dim_user_sirh
+				    #"Texte en minuscules" = Table.TransformColumns(#"Type modifié",{{"email", Text.Lower, type text}}),
+				    // Text.BeforeDelimiter([email], "@") afin de faciliter la correspondance avec Dim_user_sirh
+				    #"Texte inséré avant le délimiteur" = Table.AddColumn(#"Texte en minuscules", "UserId@", each Text.BeforeDelimiter([email], "@"), type text)
+				in
+				    #"Texte inséré avant le délimiteur"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

@@ -1,0 +1,156 @@
+table Fact_abonnement_report
+	lineageTag: 5ac141c4-aa51-4371-ab34-d13aebb7fcc2
+
+	column report_id
+		dataType: string
+		lineageTag: 2ae98564-95a4-4961-ae6b-f7f4badc4986
+		summarizeBy: none
+		sourceColumn: report_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: string
+		lineageTag: 30d4f5d8-f92e-42f8-9cee-d844a633c6f4
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: e248b586-6dc3-4e89-8d49-ffaa283fde5d
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column artifactId
+		dataType: string
+		lineageTag: 0185bab4-9e83-4813-a205-8fbe8d93f8ff
+		summarizeBy: none
+		sourceColumn: artifactId
+
+		annotation SummarizationSetBy = Automatic
+
+	column artifactDisplayName
+		dataType: string
+		lineageTag: edb02455-954a-4911-99af-72021329f172
+		summarizeBy: none
+		sourceColumn: artifactDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column subArtifactDisplayName
+		dataType: string
+		lineageTag: e74d7b85-e7d1-4ead-aa10-da8283c6d23e
+		summarizeBy: none
+		sourceColumn: subArtifactDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column artifactType
+		dataType: string
+		lineageTag: 3716ebcd-0ce0-4a7d-bd5c-b53a2064df5a
+		summarizeBy: none
+		sourceColumn: artifactType
+
+		annotation SummarizationSetBy = Automatic
+
+	column isEnabled
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 57090de3-68b0-4401-8167-891b096ddcac
+		summarizeBy: none
+		sourceColumn: isEnabled
+
+		annotation SummarizationSetBy = Automatic
+
+	column frequency
+		dataType: string
+		lineageTag: cbb7ac6e-8f54-42ad-95a9-5d1d2e39e913
+		summarizeBy: none
+		sourceColumn: frequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column startDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 0b876fcc-032e-4eee-9edf-18de787f8055
+		summarizeBy: none
+		sourceColumn: startDate
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column endDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 33ee5b1a-f096-4360-abc3-593db7561144
+		summarizeBy: none
+		sourceColumn: endDate
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column linkToContent
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 024c00b0-cc16-45ef-89f6-b90763242f95
+		summarizeBy: none
+		sourceColumn: linkToContent
+
+		annotation SummarizationSetBy = Automatic
+
+	column previewImage
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 002191e2-ebdf-4562-bb40-8bcb42e001f7
+		summarizeBy: none
+		sourceColumn: previewImage
+
+		annotation SummarizationSetBy = Automatic
+
+	column attachmentFormat
+		dataType: string
+		lineageTag: 964c9fd8-9497-4c5a-b6e8-5d51593b2b78
+		summarizeBy: none
+		sourceColumn: attachmentFormat
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner_displayName
+		dataType: string
+		lineageTag: 7a063ca2-1e74-4094-9468-cb00965cef4c
+		summarizeBy: none
+		sourceColumn: owner_displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_displayName
+		dataType: string
+		lineageTag: 15a4653e-6b1c-40fe-8f0e-e67df2142881
+		summarizeBy: none
+		sourceColumn: user_displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_abonnement_report = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // pbi_abonnement_rapport
+				    pbi_workspace_Table = Source{[Name="pbi_abonnement_rapport",Kind="Table"]}[Data]
+				in
+				    pbi_workspace_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

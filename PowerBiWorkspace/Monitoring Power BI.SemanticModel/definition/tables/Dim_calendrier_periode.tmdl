@@ -1,0 +1,50 @@
+/// Référentiel de dates = calendrier période (DIMENSION)
+table Dim_calendrier_periode
+	lineageTag: 32edf5c7-4783-44d4-afb1-8f6874651760
+	sourceLineageTag: 974cf3bb-9967-4553-a780-e4ea687db017
+
+	/// Date sans l'heure
+	column dt_date
+		dataType: dateTime
+		isHidden
+		formatString: Short Date
+		lineageTag: bdaf7a5d-6ce3-47c8-95d8-72248548bbf8
+		sourceLineageTag: 360f4b0b-9101-4935-ae05-41f11ffccceb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dt_date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = User
+
+	/// Période date
+	column periode
+		dataType: string
+		lineageTag: 26dc9321-5539-421c-b59c-3b251cca2b3c
+		sourceLineageTag: f3fca193-3d1d-41cf-8e23-4f899a10e9c4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: periode
+		sortByColumn: rank
+
+		annotation SummarizationSetBy = User
+
+	/// Rang période
+	column rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 54b12678-6f29-4eb8-b6cc-f33f479217f8
+		sourceLineageTag: 17a3a731-75b6-480a-aa34-386baec65ac3
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: rank
+
+		annotation SummarizationSetBy = User
+
+	partition Dim_calendrier_periode = entity
+		mode: directQuery
+		source
+			entityName: Dim_calendrier_periode
+			expressionSource: 'DirectQuery à AS – Referentiel Dimensions'
+

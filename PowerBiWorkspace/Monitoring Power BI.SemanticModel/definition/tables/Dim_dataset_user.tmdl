@@ -1,0 +1,83 @@
+table Dim_dataset_user
+	lineageTag: 07030feb-793c-4d01-a7ca-3be29ad5d11c
+
+	column datasetUserAccessRight
+		dataType: string
+		lineageTag: 265179e7-cab4-41e9-a110-4214fdb293fe
+		summarizeBy: none
+		sourceColumn: datasetUserAccessRight
+
+		annotation SummarizationSetBy = Automatic
+
+	column emailAddress
+		dataType: string
+		lineageTag: b2a572f8-8f6e-4cb7-90c7-7678a69c2685
+		summarizeBy: none
+		sourceColumn: emailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column displayName
+		dataType: string
+		lineageTag: 470ccb75-929f-4a1a-afd1-0ffa417fac88
+		summarizeBy: none
+		sourceColumn: displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column identifier
+		dataType: string
+		lineageTag: 6350ca53-114e-4f9d-a2ab-45934afda6db
+		summarizeBy: none
+		sourceColumn: identifier
+
+		annotation SummarizationSetBy = Automatic
+
+	column graphId
+		dataType: string
+		lineageTag: a6c37639-c243-41b6-8b15-c40d487f6ef7
+		summarizeBy: none
+		sourceColumn: graphId
+
+		annotation SummarizationSetBy = Automatic
+
+	column principalType
+		dataType: string
+		lineageTag: 04f31e72-23ae-48ad-89dd-a93879caa2cc
+		summarizeBy: none
+		sourceColumn: principalType
+
+		annotation SummarizationSetBy = Automatic
+
+	column userType
+		dataType: string
+		lineageTag: bbbd82a7-e604-4920-8d77-edf237b5d0a2
+		summarizeBy: none
+		sourceColumn: userType
+
+		annotation SummarizationSetBy = Automatic
+
+	column dataset_id
+		dataType: string
+		lineageTag: 847b366b-5906-4767-980c-08bd73a9cac4
+		summarizeBy: none
+		sourceColumn: dataset_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_dataset_user = m
+		mode: import
+		queryGroup: Dimensions\Dataset
+		source =
+				let
+				    // Source_powerbi
+				    Source = Source_powerbi,
+				    // api_pbi_user_datasets
+				    pbi_workspace_Table = Source{[Name="api_pbi_user_datasets",Kind="Table"]}[Data]
+				in
+				    pbi_workspace_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
